@@ -9,7 +9,11 @@
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-ide-helper": "v2.2.1",
         "doctrine/dbal": "2.3.5",
-        "caouecs/laravel4-lang": "3.0.8"
+        "caouecs/laravel4-lang": "3.0.8",
+        "laravelcollective/html": "v5.2.4",
+        "laravel/socialite": "^2.0",
+        "laracasts/presenter": "0.2.1",
+        "recca0120/laravel-tracy": "1.5.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
