@@ -9,11 +9,14 @@
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-ide-helper": "v2.2.1",
         "doctrine/dbal": "2.3.5",
-        "caouecs/laravel4-lang": "3.0.8",
         "laravelcollective/html": "v5.2.4",
         "laravel/socialite": "^2.0",
         "laracasts/presenter": "0.2.1",
-        "recca0120/laravel-tracy": "1.5.x-dev"
+        "recca0120/laravel-tracy": "1.5.x-dev",
+        "spatie/laravel-activitylog": "^1.2",
+        "caouecs/laravel-lang": "~3.0",
+        "proengsoft/laravel-jsvalidation": "~1.1",
+        "uxweb/sweet-alert": "~1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -50,7 +53,8 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan vendor:publish --provider=\"Proengsoft\\JsValidation\\JsValidationServiceProvider\" --tag=public --force"
         ]
     },
     "config": {

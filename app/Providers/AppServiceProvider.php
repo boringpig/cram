@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Activity\ActivityRepository;
+use App\Repositories\Activity\EloquentActivity;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\User\UserRepository as UserRepositoryContract;
 use App\Repositories\User\EloquentUser;
@@ -25,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(UserRepositoryContract::class, EloquentUser::class);
+        //
     }
 }

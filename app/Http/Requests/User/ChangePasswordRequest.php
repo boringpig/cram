@@ -7,6 +7,7 @@ use App\Http\Requests\Request;
 
 class ChangePasswordRequest extends Request
 {
+
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
@@ -26,7 +27,7 @@ class ChangePasswordRequest extends Request
 	{
 		return [
 			'current_password' => 'required|min:6',
-			'new_password' => 'required|min:6',
+			'new_password'     => 'required|min:6',
 			'confirm_password' => 'required|min:6|same:new_password',
 		];
 	}
@@ -39,7 +40,9 @@ class ChangePasswordRequest extends Request
 	public function messages()
 	{
 		return [
-			//'current_password.currentPassword' => '這不是你目前的密碼',
+			'*.required'            => '此欄位不能為空',
+			'*.min'                 => '此欄位不能小於6個字元',
+			'confirm_password.same' => '不能與新密碼欄位值不同'
 		];
 	}
 }

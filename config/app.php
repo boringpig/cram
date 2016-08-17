@@ -151,6 +151,10 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Recca0120\LaravelTracy\ServiceProvider::class,
+        Spatie\Activitylog\ActivitylogServiceProvider::class,
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
 
 
         /*
@@ -209,6 +213,9 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 

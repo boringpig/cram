@@ -3,15 +3,7 @@
 @section('title','| 修改個人資料')
 
 @section('page-header')
-    <div class="row" style="margin-top: 15px">
-        <div class="col-md-12">
-            <ul class="nav nav-tabs nav-justified">
-                <li role="presentation" class="{{ Request::is('user/edit')? 'active': '' }}"><a href="{{ route('user.profile') }}">個人資料</a></li>
-                <li role="presentation" class="{{ Request::is('user/account/change_password')? 'active': '' }}"><a href="{{ route('user.password') }}">修改密碼</a></li>
-                <li role="presentation"><a href="#">登入紀錄</a></li>
-            </ul>
-        </div>
-    </div>
+    @include('user.partials.header')
 @endsection
 
 @section('content')
@@ -20,7 +12,7 @@
         {{-- edit user form --}}
         <div class="col-md-7">
             @include('partials._message')
-            {!! Form::model($user, ['route' => ['edit.user.profile', $user->id], 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+            {!! Form::model($user, ['route' => ['edit.user.profile', $user->id], 'method' => 'post', 'id' => 'save-user', 'class' => 'form-horizontal']) !!}
                 <div class="form-group">
                     {{ Form::label('name', '使用者名稱：', ['class' => 'col-sm-3 control-label']) }}
                     <div class="col-sm-9">
@@ -36,7 +28,7 @@
                 <div class="form-group">
                     {{ Form::label('', '登入方式：', ['class' => 'col-sm-3 control-label']) }}
                     <div class="col-sm-9">
-                        <p class="form-control-static">{{ $user->present()->accountType }}</p>
+                        <p class="form-control-static">{{ $user->present()->loginType }}</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -67,4 +59,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    {!! JsValidator::formRequest('\App\Http\Requests\User\EditProfileRequest', '#save-user') !!}
 @endsection

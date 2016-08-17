@@ -3,36 +3,52 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\ChangePasswordRequest;
-use App\Repositories\User\UserRepository;
+use App\Http\Requests\User\EditProfileRequest;
+use App\Services\ClockInService;
+use App\Services\LogService;
+use App\Services\UserService;
 use Auth;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use Session;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
 	/**
-	 * @var UserRepository
+	 * @var UserService
 	 */
 	private $user;
-
+	/**
+	 * @var LogService
+	 */
+	private $log;
 
 	/**
 	 * UserController constructor.
 	 *
-	 * @param UserRepository $user
+	 * @param UserService $user
+	 * @param LogService $log
+	 * @internal param UserService $userService
+	 * @internal param UserRepository $user
+	 * @internal param ActivityRepository $activity
 	 */
-	public function __construct(UserRepository $user)
+	public function __construct(UserService $user, LogService $log)
 	{
 		$this->user = $user;
+		$this->log = $log;
+	}
+
+	public function getUserActivityLog()
+	{
+		$user_id = Auth::user()->id;
+		$activities = $this->log->showUserActivityLog($user_id);
+
+		return view('user.activity-list', compact('activities'));
 	}
 
 	public function getEditUser()
 	{
 		$user_id = Auth::user()->id;
-		$user = $this->user->find($user_id);
+		$user = $this->user->showUserById($user_id);
 
 		return view('user.profile', compact('user'));
 	}
@@ -40,7 +56,7 @@ class UserController extends Controller
 	public function getChangePassword()
 	{
 		$user_id = Auth::user()->id;
-		$user = $this->user->find($user_id);
+		$user = $this->user->showUserById($user_id);
 
 		return view('user.setting', compact('user'));
 	}
@@ -48,32 +64,66 @@ class UserController extends Controller
 	public function postChangePassword(ChangePasswordRequest $request)
 	{
 		$user = Auth::user();
-		$result = $this->user->updateUserPassword($request->except('_method','_token'), $user);
-		if(!$result){
-			Session::flash('error', '目前密碼輸入錯誤');
-			return redirect()->back();
-		}
-		Session::flash('success', '密碼變更成功');
+		$this->user->resetUserPassword($request->except('_method','_token'), $user);
+
 		return redirect()->back();
 	}
 
-	public function postEditUser(Request $request, $id)
+	public function postEditUser(EditProfileRequest $request, $id)
 	{
-		$this->validate($request, [
-				'name'  => 'required',
-				'email' => 'required|email'
-			]);
-
-		if(Auth::user()->id != $id){
-			Session::flash('error', '非本人請勿擅自更改他人資料!');
+		$result = $this->user->editUserProfile($request->except('_method','_token'), $id, $request->ip());
+		if (!$result){
 			return redirect()->route('home');
 		}
-		$checkUser = $this->user->updateUserProfile($request->except('_method','_token'), $id);
-		if (!$checkUser){
-			Session::flash('error', '沒有該帳號!');
-			return redirect()->route('home');
-		}
-		Session::flash('success', '成功修改個人資料!');
 		return redirect()->route('user.profile');
+	}
+
+	/*****************************上班打卡*********************************/
+
+	public function getClockIndex()
+	{
+		return view('clockin.index');
+	}
+
+	public function getClockLog()
+	{
+		$cards = $this->user->showUserAllClockCardByLatest();
+
+		return view('clockin.log', compact('cards'));
+	}
+
+	public function getClockView()
+	{
+		$months = $this->user->showUserSelectMonth();
+
+		return view('clockin.view-month', compact('months'));
+	}
+
+	public function ajax_postClockMonth(Request $request)
+	{
+		$card_month = $this->user->showUserClockMonth($request->all());
+
+		return response()->json($card_month);
+	}
+
+	public function getClockStatus()
+	{
+		$status = $this->user->showUserLatestClock();
+
+		return response()->json($status);
+	}
+
+	public function postUserClockIn()
+	{
+		$work = $this->user->postUserClockIn();
+
+		return response()->json($work);
+	}
+
+	public function postUserClockOut(Request $request)
+	{
+		$work = $this->user->postUserClockOut($request->all());
+
+		return response()->json($work);
 	}
 }

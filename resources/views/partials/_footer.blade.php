@@ -1,2 +1,9 @@
 <hr>
-<p class="text-center">Copyright Jeffery - All Rights Reserved</p>
+<footer>
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="text-center">Copyright &copy; Your Website 2014</p>
+        </div>
+    </div>
+    <!-- /.row -->
+</footer>

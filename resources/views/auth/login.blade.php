@@ -4,6 +4,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('src/css/bootstrap-social.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
 
 @section('content')

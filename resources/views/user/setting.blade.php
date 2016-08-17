@@ -3,15 +3,7 @@
 @section('title', '| 修改密碼')
 
 @section('page-header')
-    <div class="row" style="margin-top: 15px">
-        <div class="col-md-12">
-            <ul class="nav nav-tabs nav-justified">
-                <li role="presentation" class="{{ Request::is('user/edit')? 'active': '' }}"><a href="{{ route('user.profile') }}">個人資料</a></li>
-                <li role="presentation" class="{{ Request::is('user/account/change_password')? 'active': '' }}"><a href="{{ route('user.password') }}">修改密碼</a></li>
-                <li role="presentation"><a href="#">登入紀錄</a></li>
-            </ul>
-        </div>
-    </div>
+    @include('user.partials.header')
 @endsection
 
 @section('content')
@@ -19,12 +11,12 @@
         <h2>修改密碼</h2><br>
         <div class="col-md-7 col-md-offset-1">
             @include('partials._message')
-            @if(! is_null($user->password))
+            @if(is_null($user->password))
                 <div class="alert alert-info" role="alert">
                     <strong>通知訊息!</strong>用其他應用程式登入，不需變更密碼～
                 </div>
             @else
-            {!! Form::open(['route' => ['change.user.password'], 'method' => 'post', 'role' => 'form', 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['route' => ['change.user.password'], 'method' => 'post', 'id' => 'save-password', 'class' => 'form-horizontal']) !!}
                 <div class="form-group">
                     {{ Form::label('current_password', '目前密碼：', ['class' => 'col-sm-3 control-label']) }}
                     <div class="col-md-9">
@@ -55,4 +47,8 @@
             @endif
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    {!! JsValidator::formRequest('\App\Http\Requests\User\ChangePasswordRequest', '#save-password') !!}
 @endsection

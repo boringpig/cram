@@ -9,8 +9,9 @@ use App\Http\Requests;
 class PageController extends Controller
 {
 
-	public function getIndex()
+	public function getHomePage()
 	{
 		return view('pages.home');
     }
+
 }

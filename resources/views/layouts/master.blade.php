@@ -11,9 +11,9 @@
     <div class="container">
         @yield('page-header')
         @yield('content')
-
-        @include('partials._footer')
     </div>
+
+    @yield('footer')
 
     @include('partials._footer-scripts')
     @yield('scripts')

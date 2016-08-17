@@ -1,0 +1,28 @@
+hr.style1 {
+    border-top: 1px solid #8c8b8b;
+    text-align: center;
+}
+hr.style1:after {
+    content: '其他方式登入';
+    display: inline-block;
+    position: relative;
+    top: -14px;
+    padding: 0 10px;
+    background: #fff;
+    color: #8c8b8b;
+    font-size: 18px;
+}
+hr.style2 {
+    border-top: 1px solid #8c8b8b;
+    text-align: center;
+}
+hr.style2:after {
+    content: '其他方式註冊';
+    display: inline-block;
+    position: relative;
+    top: -14px;
+    padding: 0 10px;
+    background: #fff;
+    color: #8c8b8b;
+    font-size: 18px;
+}

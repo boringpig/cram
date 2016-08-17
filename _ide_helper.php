@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.39 on 2016-07-25.
+ * Generated for Laravel 5.2.41 on 2016-08-06.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -4592,17 +4592,6 @@ if (! function_exists('with')) {
         }
         
         /**
-         * Get the deeply nested relations for a given top-level relation.
-         *
-         * @param string $relation
-         * @return array 
-         * @static 
-         */
-        public static function nestedRelations($relation){
-            return \Illuminate\Database\Eloquent\Builder::nestedRelations($relation);
-        }
-        
-        /**
          * Apply the callback's query changes if the given "value" is true.
          *
          * @param bool $value
@@ -4753,6 +4742,17 @@ if (! function_exists('with')) {
          */
         public static function withCount($relations){
             return \Illuminate\Database\Eloquent\Builder::withCount($relations);
+        }
+        
+        /**
+         * Add the given scopes to the current builder instance.
+         *
+         * @param array $scopes
+         * @return mixed 
+         * @static 
+         */
+        public static function scopes($scopes){
+            return \Illuminate\Database\Eloquent\Builder::scopes($scopes);
         }
         
         /**
@@ -6430,6 +6430,19 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Move a directory.
+         *
+         * @param string $from
+         * @param string $to
+         * @param bool $overwrite
+         * @return bool 
+         * @static 
+         */
+        public static function moveDirectory($from, $to, $overwrite = false){
+            return \Illuminate\Filesystem\Filesystem::moveDirectory($from, $to, $overwrite);
+        }
+        
+        /**
          * Copy a directory from one location to another.
          *
          * @param string $directory
@@ -7648,15 +7661,15 @@ if (! function_exists('with')) {
         }
         
         /**
-         * Set the encrypter instance.
+         * Set the encrypter implementation.
          *
-         * @param \Illuminate\Contracts\Encryption\Encrypter $crypt
+         * @param \Illuminate\Contracts\Encryption\Encrypter $encrypter
          * @return void 
          * @static 
          */
-        public static function setEncrypter($crypt){
+        public static function setEncrypter($encrypter){
             //Method inherited from \Illuminate\Queue\Queue            
-            \Illuminate\Queue\SyncQueue::setEncrypter($crypt);
+            \Illuminate\Queue\SyncQueue::setEncrypter($encrypter);
         }
         
     }
@@ -10719,6 +10732,30 @@ if (! function_exists('with')) {
         }
         
         /**
+         * Increment the value of an item in the session.
+         *
+         * @param string $key
+         * @param int $amount
+         * @return mixed 
+         * @static 
+         */
+        public static function increment($key, $amount = 1){
+            return \Illuminate\Session\Store::increment($key, $amount);
+        }
+        
+        /**
+         * Decrement the value of an item in the session.
+         *
+         * @param string $key
+         * @param int $amount
+         * @return int 
+         * @static 
+         */
+        public static function decrement($key, $amount = 1){
+            return \Illuminate\Session\Store::decrement($key, $amount);
+        }
+        
+        /**
          * Flash a key / value pair to the session.
          *
          * @param string $key
@@ -11362,11 +11399,12 @@ if (! function_exists('with')) {
         /**
          * Get the URL for the previous request.
          *
+         * @param mixed $fallback
          * @return string 
          * @static 
          */
-        public static function previous(){
-            return \Illuminate\Routing\UrlGenerator::previous();
+        public static function previous($fallback = false){
+            return \Illuminate\Routing\UrlGenerator::previous($fallback);
         }
         
         /**
@@ -13159,6 +13197,174 @@ if (! function_exists('with')) {
         public static function getDrivers(){
             //Method inherited from \Illuminate\Support\Manager            
             return \Laravel\Socialite\SocialiteManager::getDrivers();
+        }
+        
+    }
+
+
+    class JsValidator extends \Proengsoft\JsValidation\Facades\JsValidatorFacade{
+        
+        /**
+         * Creates JsValidator instance based on rules and message arrays.
+         *
+         * @param array $rules
+         * @param array $messages
+         * @param array $customAttributes
+         * @param null|string $selector
+         * @return \Proengsoft\JsValidation\JavascriptValidator 
+         * @static 
+         */
+        public static function make($rules, $messages = array(), $customAttributes = array(), $selector = null){
+            return \Proengsoft\JsValidation\JsValidatorFactory::make($rules, $messages, $customAttributes, $selector);
+        }
+        
+        /**
+         * Creates JsValidator instance based on FormRequest.
+         *
+         * @param $formRequest
+         * @param null $selector
+         * @return \Proengsoft\JsValidation\JavascriptValidator 
+         * @throws FormRequestArgumentException
+         * @static 
+         */
+        public static function formRequest($formRequest, $selector = null){
+            return \Proengsoft\JsValidation\JsValidatorFactory::formRequest($formRequest, $selector);
+        }
+        
+        /**
+         * Creates JsValidator instance based on Validator.
+         *
+         * @param \Illuminate\Validation\Validator $validator
+         * @param string|null $selector
+         * @return \Proengsoft\JsValidation\JavascriptValidator 
+         * @static 
+         */
+        public static function validator($validator, $selector = null){
+            return \Proengsoft\JsValidation\JsValidatorFactory::validator($validator, $selector);
+        }
+        
+    }
+
+
+    class Alert extends \UxWeb\SweetAlert\SweetAlert{
+        
+        /**
+         * Display an alert message with a text and an optional title.
+         * 
+         * By default the alert is not typed.
+         *
+         * @param string $text
+         * @param string $type
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function message($text, $title = '', $type = null){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::message($text, $title, $type);
+        }
+        
+        /**
+         * Display a not typed alert message with a text and a title.
+         *
+         * @param string $text
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function basic($text, $title){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::basic($text, $title);
+        }
+        
+        /**
+         * Display an info typed alert message with a text and an optional title.
+         *
+         * @param string $text
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function info($text, $title = ''){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::info($text, $title);
+        }
+        
+        /**
+         * Display a success typed alert message with a text and an optional title.
+         *
+         * @param string $text
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function success($text, $title = ''){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::success($text, $title);
+        }
+        
+        /**
+         * Display an error typed alert message with a text and an optional title.
+         *
+         * @param string $text
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function error($text, $title = ''){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::error($text, $title);
+        }
+        
+        /**
+         * Display a warning typed alert message with a text and an optional title.
+         *
+         * @param string $text
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function warning($text, $title = ''){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::warning($text, $title);
+        }
+        
+        /**
+         * Set the duration for this alert until it autocloses.
+         *
+         * @param int $milliseconds
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function autoclose($milliseconds = 1800){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::autoclose($milliseconds);
+        }
+        
+        /**
+         * Add a confirmation button to the alert.
+         *
+         * @param string $buttonText
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function confirmButton($buttonText = 'OK'){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::confirmButton($buttonText);
+        }
+        
+        /**
+         * Make this alert persistent with a confirmation button.
+         *
+         * @param string $buttonText
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function persistent($buttonText = 'OK'){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::persistent($buttonText);
+        }
+        
+        /**
+         * Make Message HTML view.
+         *
+         * @param bool|true $html
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function html(){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::html();
         }
         
     }
