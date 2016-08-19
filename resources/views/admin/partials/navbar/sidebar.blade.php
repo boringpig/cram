@@ -76,6 +76,45 @@
                 </ul>
             </li>
             <li>
+                <a><i class="fa fa-university"></i> 班級管理<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ route('backend.lessons.index') }}">班級總覽</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('backend.lessons.create') }}">新增班級</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('backend.grade') }}">年級總覽</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('backend.time') }}">上課時間總覽</a>
+                    </li>
+                    <li>
+                        <a href="#">點名管理 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="#">班級查詢</a>
+                            </li>
+                            <li>
+                                <a href="#">學生查詢</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a><i class="fa fa-users"></i> 學生管理<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#">學生總覽</a>
+                    </li>
+                    <li>
+                        <a href="#">新增學生</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a><i class="fa fa-list-alt"></i> 公告管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

@@ -14,7 +14,7 @@ class UserPresenter extends Presenter
 
 	public function createdDate()
 	{
-		return $this->reated_at->format('Y/m/d');
+		return $this->created_at->format('Y/m/d');
 	}
 
 	public function statusType()

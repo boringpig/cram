@@ -71,6 +71,16 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Admin'], function(){
 	Route::get('work', ['as' => 'backend.work', 'uses' => 'WorkController@manageWork']);
 	Route::resource('/works', 'WorkController');
 
+	/**** 班級管理Routes ****/
+	//班級管理
+	Route::resource('/lessons', 'LessonController');
+	//年級管理
+	Route::get('/grade', ['as' => 'backend.grade', 'uses' => 'GradeController@manageGrade']);
+	Route::resource('/grades', 'GradeController');
+	//上課時間管理
+	Route::get('/time', ['as' => 'backend.time', 'uses' => 'TimeController@manageTime']);
+	Route::resource('/times', 'TimeController');
+
 	/**** 公告管理Routes ****/
 	//公告文章管理
 	Route::resource('/articles', 'ArticleController');

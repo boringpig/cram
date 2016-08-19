@@ -35,6 +35,8 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Article[] $articles
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ClockIn[] $clockins
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Lesson[] $lessons
  */
 class User extends Authenticatable
 {
@@ -73,5 +75,10 @@ class User extends Authenticatable
     public function clockins()
     {
         return $this->hasMany('App\Models\ClockIn');
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany('App\Models\Lesson');
     }
 }

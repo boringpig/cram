@@ -9,8 +9,8 @@
 <!-- Laravel jsvalidation JavaScript -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 <!-- SweetAlert JavaScript -->
-<script type="text/javascript" src="{{ asset('src/js/sweetalert.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin/src/js/sweetalert.min.js') }}"></script>
 <!-- Pagination JavaScript -->
 <script type="text/javascript" src="{{ asset('admin/src/js/jquery.twbsPagination.min.js') }}"></script>
 <!-- Select2 JavaScript -->
-<script type="text/javascript" src="{{ asset('src/js/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin/src/js/select2.min.js') }}"></script>

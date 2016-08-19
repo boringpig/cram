@@ -180,4 +180,17 @@ class UserService
 	{
 		return $this->userRepository->getAllServitorClockMonth($data);
 	}
+
+	//所有老師
+	public function showAllTeacher()
+	{
+		$teachers = $this->userRepository->getAllTeacher();
+		$teacher_list = [];
+
+		foreach ($teachers as $teacher){
+			$teacher_list[$teacher->id] = $teacher->name;
+		}
+
+		return $teacher_list;
+	}
 }

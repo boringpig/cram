@@ -7,6 +7,6 @@
 <!-- Custom Fonts -->
 <link href="{{ asset('admin/src/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 <!-- SweetAlert CSS -->
-<link rel="stylesheet" href="{{ asset('src/css/sweetalert.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/src/css/sweetalert.css') }}">
 <!-- Select2 CSS -->
-<link rel="stylesheet" href="{{ asset('src/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/src/css/select2.min.css') }}">

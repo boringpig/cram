@@ -113,6 +113,15 @@ class UserRepository extends AbstractRepository
 		return $result;
 	}
 
+	public function getAllTeacher()
+	{
+		$teachers = $this->model->with('roles')->whereHas('roles', function($role_query){
+			$role_query->where('name', 'LIKE' , '%老師');
+		})->get();
+
+		return $teachers;
+	}
+
 	/*****************************前台管理*********************************/
 	public function updateUserPassword(array $data, User $userObj) : bool
 	{

@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\ClockIn whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\ClockIn whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Work[] $works
+ * @property-read \App\Models\User $user
  */
 class ClockIn extends Model
 {

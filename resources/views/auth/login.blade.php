@@ -26,7 +26,7 @@
                     {{ Form::password('password', ['class' => 'form-control', 'placeholder' => '請輸入密碼']) }}
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox"> Remember me</label>
+                    <label><input type="checkbox"> 記住我</label>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="form-control btn btn-primary btn-block">登入</button>

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AdminController;
 use App\Http\Requests\Work\WorkRequest;
 use App\Services\WorkService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
-class WorkController extends Controller
+class WorkController extends AdminController
 {
 
     /**
@@ -25,6 +25,7 @@ class WorkController extends Controller
     public function __construct(WorkService $work)
     {
         $this->work = $work;
+        parent::__construct();
     }
 
     public function manageWork()
