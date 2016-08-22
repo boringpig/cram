@@ -81,6 +81,9 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Admin'], function(){
 	Route::get('/time', ['as' => 'backend.time', 'uses' => 'TimeController@manageTime']);
 	Route::resource('/times', 'TimeController');
 
+	/**** 學生管理Routes ****/
+	Route::resource('/students', 'StudentController');
+
 	/**** 公告管理Routes ****/
 	//公告文章管理
 	Route::resource('/articles', 'ArticleController');

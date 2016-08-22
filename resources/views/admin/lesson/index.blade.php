@@ -25,7 +25,7 @@
                                 <td>{{ $lesson->grade->name }}</td>
                                 <td>{{ $lesson->name }}</td>
                                 <td>{{ $lesson->user->name }}</td>
-                                <td>10 人</td>
+                                <td>{{ count($lesson->students->all()) }} 人</td>
                                 <td>{{ $lesson->present()->dateFormat }}</td>
                                 <td>
                                     <a href="{{ route('backend.lessons.show', $lesson->id) }}" class="btn btn-warning"><i class="fa fa-eye fa-lg"></i></a>

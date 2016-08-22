@@ -24,6 +24,18 @@ class LessonService
 		$this->lessonRepository = $lessonRepository;
 	}
 
+	public function showAllLessonByArray()
+	{
+		$lessons = $this->lessonRepository->all();
+		$lesson_list = [];
+
+		foreach ($lessons as $lesson){
+			$lesson_list[$lesson->id] = $lesson->name;
+		}
+
+		return $lesson_list;
+	}
+
 	public function showAllLesson()
 	{
 		return $this->lessonRepository->paginate(8);

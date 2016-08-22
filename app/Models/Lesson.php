@@ -73,4 +73,9 @@ class Lesson extends Model
 	{
 		return $this->belongsToMany('App\Models\Time', 'lesson_time', 'lesson_id', 'time_id');
 	}
+
+	public function students()
+	{
+		return $this->belongsToMany('App\Models\Student', 'lesson_student', 'lesson_id', 'student_id');
+	}
 }

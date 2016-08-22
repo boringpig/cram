@@ -15,11 +15,11 @@
             <br>
             <h4>授課老師： {{ $lesson->user->name }}</h4>
             <br>
-            <h4>班級人數： 10 人</h4>
+            <h4>班級人數： {{ count($lesson->students->all()) }} 人</h4>
             <br>
             <h4>上課時間：
                 @foreach($lesson->times()->get() as $time)
-                    {{ $time->day }} {{ $time->start_time }} ~ {{ $time->end_time }}
+                    {{ $time->day }} {{ $time->start_time }} ~ {{ $time->end_time }} &nbsp;&nbsp;
                 @endforeach
             </h4>
             <br>

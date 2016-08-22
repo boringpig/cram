@@ -107,10 +107,10 @@
                 <a><i class="fa fa-users"></i> 學生管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">學生總覽</a>
+                        <a href="{{ route('backend.students.index') }}">學生總覽</a>
                     </li>
                     <li>
-                        <a href="#">新增學生</a>
+                        <a href="{{ route('backend.students.create') }}">新增學生</a>
                     </li>
                 </ul>
             </li>
