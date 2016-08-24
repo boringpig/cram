@@ -37,7 +37,8 @@ class ClockIn extends Model
 
 	public function works()
 	{
-		return $this->belongsToMany('App\Models\Work', 'clockIn_work', 'clockIn_id', 'work_id')->withPivot('clockIn_id', 'work_id', 'hour');
+		return $this->belongsToMany('App\Models\Work', 'clockIn_work', 'clockIn_id', 'work_id')
+					->withPivot('clockIn_id', 'work_id', 'hour');
     }
 
 	public function user()

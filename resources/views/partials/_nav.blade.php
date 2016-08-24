@@ -22,6 +22,7 @@
                             <li><a href="{{ route('user.profile') }}">個人帳戶</a></li>
                             @role('工讀生')
                                 <li><a href="{{ route('clock-in.index') }}">上班打卡</a></li>
+                                <li><a href="{{ route('rollCall.index') }}">班級點名</a></li>
                             @endrole
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}">登出</a></li>

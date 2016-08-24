@@ -28,16 +28,15 @@ class LessonRequest extends Request
 		$rules = [
 			'grade_id'    => 'required',
 			'classNo'     => 'required|min:4|unique:lessons',
-			'name'        => 'required|min:3|unique:lessons',
+			'name'        => 'required|min:3',
 			'user_id'     => 'required',
 			'description' => 'required',
 		];
 
 		if (isset($_REQUEST['id'])) {
 			$lesson = Lesson::find($_REQUEST['id']);
-			if ($_REQUEST['classNo'] === $lesson->classNo && $_REQUEST['name'] === $lesson->name) {
+			if ($_REQUEST['classNo'] === $lesson->classNo) {
 				$rules['classNo'] = 'required';
-				$rules['name']    = 'required';
 			}
 		}
 

@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-sm-9 col-sm-offset-2">
+        <div class="col-sm-11 col-sm-offset-1">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -23,7 +23,7 @@
                         @foreach($lessons as $lesson)
                             <tr>
                                 <td>{{ $lesson->grade->name }}</td>
-                                <td>{{ $lesson->name }}</td>
+                                <td>{{$lesson->grade->name}} {{ $lesson->name }}</td>
                                 <td>{{ $lesson->user->name }}</td>
                                 <td>{{ count($lesson->students->all()) }} 人</td>
                                 <td>{{ $lesson->present()->dateFormat }}</td>

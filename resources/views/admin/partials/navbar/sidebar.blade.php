@@ -94,10 +94,10 @@
                         <a href="#">點名管理 <span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li>
-                                <a href="#">班級查詢</a>
+                                <a href="{{ route('rollCall-date.view') }}">年/月查詢</a>
                             </li>
                             <li>
-                                <a href="#">學生查詢</a>
+                                <a href="{{ route('rollCall-lesson.view') }}">班級查詢</a>
                             </li>
                         </ul>
                     </li>

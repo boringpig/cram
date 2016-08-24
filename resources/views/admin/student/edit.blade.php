@@ -17,6 +17,7 @@
 @section('content')
     <div class="row">
         <div class="col-sm-8 col-sm-offset-3">
+            @include('admin.partials._message')
             {!! Form::model($student, ['route' => ['backend.students.update', $student->id], 'method' => 'put' , 'class' => 'horizontal']) !!}
                 @include('admin.student.partials._form', ['submitButtonText' => '儲存'])
             {!! Form::close() !!}

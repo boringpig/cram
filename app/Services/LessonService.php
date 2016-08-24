@@ -30,7 +30,7 @@ class LessonService
 		$lesson_list = [];
 
 		foreach ($lessons as $lesson){
-			$lesson_list[$lesson->id] = $lesson->name;
+			$lesson_list[$lesson->id] = $lesson->grade->name . ' ' . $lesson->name;
 		}
 
 		return $lesson_list;

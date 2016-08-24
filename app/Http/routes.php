@@ -50,6 +50,12 @@ Route::group(['prefix' => 'clock', 'middleware' => 'auth'], function(){
 	Route::post('/work/finish', ['as' => 'clock-out.finish', 'uses' => 'WorkController@postUserWork']);
 	Route::get('/work/content', ['as' => 'work.content', 'uses' => 'WorkController@ajax_showAllWork']);
 });
+//班級點名Routes
+Route::group(['prefix' => 'rollCall', 'middleware' => 'auth'], function(){
+	Route::get('/', ['as' => 'rollCall.index', 'uses' => 'RollCallController@getRollCallIndex']);
+	Route::post('/search-lesson', ['as' => 'search.lesson', 'uses' => 'RollCallController@ajax_postSearchLesson']);
+	Route::post('/lesson', ['as' => 'rollCall.lesson', 'uses' => 'RollCallController@ajax_postRollCallLesson']);
+});
 
 ///後台管理Routes
 Route::group(['prefix' => 'backend', 'namespace' => 'Admin'], function(){
@@ -80,6 +86,13 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Admin'], function(){
 	//上課時間管理
 	Route::get('/time', ['as' => 'backend.time', 'uses' => 'TimeController@manageTime']);
 	Route::resource('/times', 'TimeController');
+	//點名管理
+	Route::get('rollCall/date', ['as' => 'rollCall-date.view', 'uses' => 'RollCallController@getRollCallViewDate']);
+	Route::post('rollCall/date', ['as' => 'rollCall.date', 'uses' => 'RollCallController@ajax_searchRollCallDate']);
+	Route::get('rollCall/lesson', ['as' => 'rollCall-lesson.view', 'uses' => 'RollCallController@getRollCallViewLesson']);
+	Route::post('rollCall/lesson', ['as' => 'rollCall.lesson', 'uses' => 'RollCallController@ajax_searchRollCallLesson']);
+	Route::get('rollCall/show/{id}', ['as' => 'rollCall.show', 'uses' => 'RollCallController@showRollCall']);
+	Route::post('rollCall/update/{id}', ['as' => 'rollCall.update', 'uses' => 'RollCallController@postUpdateRollCall']);
 
 	/**** 學生管理Routes ****/
 	Route::resource('/students', 'StudentController');

@@ -50,6 +50,7 @@
                         {!! Form::open(['route' => ['user-clock.month'], 'id' => 'search-month-form' ]) !!}
                             <div class="input-group">
                                 <select class="select-month form-control">
+                                    <option></option>
                                     @foreach($months as $month)
                                         <option value="{{ $month }}">{{ $month }}月份</option>
                                     @endforeach
@@ -77,7 +78,6 @@
     <script type="text/javascript">
         $(".select-month").select2({
             placeholder: "選擇月份",
-            minimumResultsForSearch: Infinity
         });
     </script>
 @endsection

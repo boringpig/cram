@@ -27,7 +27,7 @@
                                 <td>{{ $student->phone->student_phone }}</td>
                                 <td>
                                     @foreach($student->lessons()->get() as $lesson)
-                                        {{ $lesson->name }}
+                                        {{$lesson->grade->name}} {{ $lesson->name }}
                                     @endforeach
                                 </td>
                                 <td>{{ $student->present()->createdDate }}</td>

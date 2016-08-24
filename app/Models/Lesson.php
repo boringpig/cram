@@ -31,6 +31,8 @@ use Laracasts\Presenter\PresentableTrait;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Lesson whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Lesson whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Student[] $students
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\RollCall[] $rollCalls
  */
 class Lesson extends Model
 {
@@ -77,5 +79,10 @@ class Lesson extends Model
 	public function students()
 	{
 		return $this->belongsToMany('App\Models\Student', 'lesson_student', 'lesson_id', 'student_id');
+	}
+
+	public function rollCalls()
+	{
+		return $this->hasMany('App\Models\RollCall');
 	}
 }
