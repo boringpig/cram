@@ -4,6 +4,7 @@
 namespace App\Presenters;
 
 use Laracasts\Presenter\Presenter;
+use Storage;
 
 class UserPresenter extends Presenter
 {
@@ -44,6 +45,17 @@ class UserPresenter extends Presenter
 		} elseif($this->status == 0){
 			return false;
 		}
+	}
+
+	public function Avatar_url()
+	{
+		$s3 = Storage::cloud();
+
+		if ($s3->has($this->avatar)){
+			return $s3->url($this->avatar);
+		}
+
+		return $this->avatar_url;
 	}
 
 }

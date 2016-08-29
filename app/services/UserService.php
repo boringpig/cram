@@ -206,7 +206,12 @@ class UserService
 	}
 
 	//所有老師
-	public function showAllTeacher()
+	public function showAllTeachers()
+	{
+		return $this->userRepository->getAllTeacher();
+	}
+
+	public function showAllTeacherByArray()
 	{
 		$teachers = $this->userRepository->getAllTeacher();
 		$teacher_list = [];
@@ -217,4 +222,5 @@ class UserService
 
 		return $teacher_list;
 	}
+
 }

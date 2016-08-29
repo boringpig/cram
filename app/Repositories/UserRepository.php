@@ -36,7 +36,7 @@ class UserRepository extends AbstractRepository
 		$user->email = $data['email'];
 		$user->password = bcrypt($data['password']);
 		$user->status = $status;
-		$user->avatar_url = 'avatars/default.jpg';
+		$user->avatar = 'avatars/default.jpg';
 		$user->save();
 		if (isset($data['roles'])) {
 			$user->roles()->sync($data['roles']);
@@ -132,11 +132,11 @@ class UserRepository extends AbstractRepository
 	{
 		$user = $this->model->find($user_id);
 		$s3 = Storage::cloud();
-		if ($s3->has($user->avatar_url)){
-			return $s3->url($user->avatar_url);
+		if ($s3->has($user->avatar)){
+			return $s3->url($user->avatar);
 		}
 
-		return $user->avatar_url;
+		return $user->avatar;
 	}
 
 
@@ -157,7 +157,7 @@ class UserRepository extends AbstractRepository
 			$s3->put($filePath, $image, 'public');
 		}
 
-		$user->avatar_url = $filePath;
+		$user->avatar = $filePath;
 		$user->save();
 
 		return $user;
@@ -189,7 +189,7 @@ class UserRepository extends AbstractRepository
 		$user = $this->model->create([
 			'name'         => isset($userObj->name) ? $userObj->name : '',
 			'email'        => isset($userObj->email) ? $userObj->email : '',
-			'avatar_url'   => isset($userObj->avatar) ? $userObj->avatar : 'avatars/default.jpg',
+			'avatar'   => isset($userObj->avatar) ? $userObj->avatar : 'avatars/default.jpg',
 			'sns_acc_id'   => $userObj->id,
 			'account_type' => $type,
 			'status'       => 1

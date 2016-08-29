@@ -70,7 +70,7 @@ class LessonController extends AdminController
     public function create()
     {
         $grade_list = $this->grade->showAllGradeByArray();
-        $teacher_list = $this->user->showAllTeacher();
+        $teacher_list = $this->user->showAllTeacherByArray();
         $time_list = $this->time->showAllTimeByArray();
 
         return view('admin.lesson.create', compact('grade_list', 'teacher_list', 'time_list'));
@@ -112,7 +112,7 @@ class LessonController extends AdminController
     {
         $lesson = $this->lesson->showLessonById($id);
         $grade_list = $this->grade->showAllGradeByArray();
-        $teacher_list = $this->user->showAllTeacher();
+        $teacher_list = $this->user->showAllTeacherByArray();
         $time_list = $this->time->showAllTimeByArray();
 
         return view('admin.lesson.edit', compact('lesson', 'grade_list', 'teacher_list', 'time_list'));
