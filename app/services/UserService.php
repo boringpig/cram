@@ -48,6 +48,17 @@ class UserService
 	}
 
 	/**
+	 * 查詢使用者的大頭貼
+	 *
+	 * @param int $user_id
+	 * @return mixed|string
+	 */
+	public function showUserAvatar(int $user_id)
+	{
+		return $this->userRepository->getUserAvatarById($user_id);
+	}
+
+	/**
 	 * 重設使用者密碼
 	 *
 	 * @param array $data
@@ -98,6 +109,19 @@ class UserService
 
 			return false;
 		}
+	}
+
+	/**
+	 * 更新使用者大頭貼
+	 *
+	 * @param array $data
+	 * @return null
+	 */
+	public function UploadUserAvatar(array $data)
+	{
+		$user = Auth::user();
+
+		return $this->userRepository->uploadUserAvatar($data, $user);
 	}
 
 	public function showUserAllClockCardByLatest()

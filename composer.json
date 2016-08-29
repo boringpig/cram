@@ -16,7 +16,10 @@
         "spatie/laravel-activitylog": "^1.2",
         "caouecs/laravel-lang": "~3.0",
         "proengsoft/laravel-jsvalidation": "~1.1",
-        "uxweb/sweet-alert": "~1.1"
+        "uxweb/sweet-alert": "~1.1",
+        "zizaco/entrust": "5.2.x-dev",
+        "intervention/image": "2.3.7",
+        "league/flysystem-aws-s3-v3": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -53,8 +56,7 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
-            "php artisan optimize",
-            "php artisan vendor:publish --provider=\"Proengsoft\\JsValidation\\JsValidationServiceProvider\" --tag=public --force"
+            "php artisan optimize"
         ]
     },
     "config": {

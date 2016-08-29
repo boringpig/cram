@@ -17,7 +17,10 @@
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
                     <li class="dropdown">
-                        <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                        <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ $avatar_url }}" style="width:32px; height:32px; position:absolute; top:8px; left:-27px; border-radius:50%">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('user.profile') }}">個人帳戶</a></li>
                             @role('工讀生')

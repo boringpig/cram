@@ -155,7 +155,7 @@ return [
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -164,6 +164,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
 
     ],
 
@@ -216,6 +217,7 @@ return [
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 

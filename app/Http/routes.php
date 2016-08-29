@@ -37,6 +37,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function(){
 	Route::get('/account/change_password', ['as' => 'user.password', 'uses' => 'UserController@getChangePassword']);
 	Route::post('/account/change_password', ['as' => 'change.user.password', 'uses' => 'UserController@postChangePassword']);
 	Route::get('/account/activity-log', ['as' => 'user.activity-log', 'uses' => 'UserController@getUserActivityLog']);
+	Route::post('/account/user-avatar', ['as' => 'user.avatar', 'uses' => 'UserController@postUserAvatar']);
 });
 // 上班打卡Routes
 Route::group(['prefix' => 'clock', 'middleware' => 'auth'], function(){

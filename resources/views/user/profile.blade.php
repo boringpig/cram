@@ -48,14 +48,14 @@
             {!! Form::close() !!}
         </div>
         {{--edit user image--}}
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-offset-1">
             <div class="text-center">
-                <img src="{{ "https://www.gravatar.com/avatar/HASH" }}" class="avatar img-circle img-thumbnail" alt="avatar">
-                <h6>上傳其他大頭貼</h6>
-                <label class="btn btn-default btn-file">
-                    Browse
-                    {{ Form::file('myfile[]', ['style' => 'display: none;', 'multiple']) }}
-                </label>
+                <img src="{{ $avatar_url }}" class="img-circle img-thumbnail" style="width: 180px; height: 180px" alt="avatar">
+                <h5>上傳大頭貼</h5>
+                {!! Form::open(['route' => ['user.avatar'], 'method'=> 'post', 'files' => 'true']) !!}
+                    {{ Form::file('avatar' , ['style' => 'margin-left:90px']) }}
+                    {{ Form::submit('送出', ['class' => 'btn btn-default', 'style' => 'margin-top:15px']) }}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

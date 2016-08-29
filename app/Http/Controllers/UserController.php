@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\ChangePasswordRequest;
 use App\Http\Requests\User\EditProfileRequest;
-use App\Services\ClockInService;
+use App\Http\Requests\User\UserAvatarRequest;
 use App\Services\LogService;
 use App\Services\UserService;
 use Auth;
@@ -49,8 +49,9 @@ class UserController extends Controller
 	{
 		$user_id = Auth::user()->id;
 		$user = $this->user->showUserById($user_id);
+		$avatar_url = $this->user->showUserAvatar($user_id);
 
-		return view('user.profile', compact('user'));
+		return view('user.profile', compact('user', 'avatar_url'));
 	}
 
 	public function getChangePassword()
@@ -76,6 +77,13 @@ class UserController extends Controller
 			return redirect()->route('home');
 		}
 		return redirect()->route('user.profile');
+	}
+
+	public function postUserAvatar(UserAvatarRequest $request)
+	{
+		$this->user->UploadUserAvatar($request->allFiles());
+
+		return redirect()->back();
 	}
 
 	/*****************************上班打卡*********************************/

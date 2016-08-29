@@ -6,6 +6,9 @@ namespace App\Repositories;
 use App\Models\User;
 use Carbon\Carbon;
 use Hash;
+use Intervention\Image\Facades\Image;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use Storage;
 
 class UserRepository extends AbstractRepository
 {
@@ -33,6 +36,7 @@ class UserRepository extends AbstractRepository
 		$user->email = $data['email'];
 		$user->password = bcrypt($data['password']);
 		$user->status = $status;
+		$user->avatar_url = 'avatars/default.jpg';
 		$user->save();
 		if (isset($data['roles'])) {
 			$user->roles()->sync($data['roles']);
@@ -122,7 +126,43 @@ class UserRepository extends AbstractRepository
 		return $teachers;
 	}
 
-	/*****************************前台管理*********************************/
+	/*****************************前台管理********************************/
+
+	public function getUserAvatarById(int $user_id)
+	{
+		$user = $this->model->find($user_id);
+		$s3 = Storage::cloud();
+		if ($s3->has($user->avatar_url)){
+			return $s3->url($user->avatar_url);
+		}
+
+		return $user->avatar_url;
+	}
+
+
+	public function uploadUserAvatar(array $data, User $user)
+	{
+		$file = $data['avatar'];
+		$fileName = $user->id . '.jpg';
+		$image = (string) Image::make($file)->encode('jpg', 75)->resize(300, 300);
+		$filePath = 'avatars/' . $fileName;
+		$s3 = Storage::cloud();
+		//判斷是否有此使用者的大頭貼
+		if ($s3->has($filePath)){
+			//有的話修改此大頭貼
+			$s3->delete($filePath);
+			$s3->put($filePath, $image, 'public');
+		} else {
+			//沒有的話儲存大頭貼
+			$s3->put($filePath, $image, 'public');
+		}
+
+		$user->avatar_url = $filePath;
+		$user->save();
+
+		return $user;
+	}
+
 	public function updateUserPassword(array $data, User $userObj) : bool
 	{
 		if (Hash::check($data['current_password'], $userObj->password)) {
@@ -149,7 +189,7 @@ class UserRepository extends AbstractRepository
 		$user = $this->model->create([
 			'name'         => isset($userObj->name) ? $userObj->name : '',
 			'email'        => isset($userObj->email) ? $userObj->email : '',
-			'avatar_url'   => isset($userObj->avatar) ? $userObj->avatar : '',
+			'avatar_url'   => isset($userObj->avatar) ? $userObj->avatar : 'avatars/default.jpg',
 			'sns_acc_id'   => $userObj->id,
 			'account_type' => $type,
 			'status'       => 1
