@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-7">
                 <a href="{{ route('article.show', $article->id) }}">
-                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                    <img src="{{ $article->present()->showImageUrl }}" alt="{{ $article->title }}" class="img-responsive" style="width: 700px;height: 300px;">
                 </a>
             </div>
             <div class="col-md-5">

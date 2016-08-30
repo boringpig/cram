@@ -19,6 +19,9 @@
 @section('content')
     <div class="row">
         <div class="col-sm-8 col-sm-offset-1">
+            @if($article->image != null)
+                <img src="{{ $article->present()->showImageUrl }}" alt="{{ $article->name }}" class="img-responsive" style="width: 700px;height: 300px">
+            @endif
             <p class="lead">{!! $article->body !!}</p>
             <hr>
             <div class="tags">

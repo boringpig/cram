@@ -5,8 +5,8 @@
 @section('styles')
     <style type="text/css">
         .horizontal > .form-group > label{
-            width: 10%;
-            margin-top: 6px;
+            width: 13%;
+            margin-top: 1px;
             font-size: 13pt;
         }
     </style>
@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-sm-10 col-md-offset-2">
             @include('admin.partials._message')
-            {!! Form::model($article, ['route' => ['backend.articles.update', $article->id], 'method' => 'put' , 'class' => 'horizontal']) !!}
+            {!! Form::model($article, ['route' => ['backend.articles.update', $article->id], 'method' => 'put' , 'class' => 'horizontal', 'files' => true]) !!}
                 {{ Form::hidden('id', $article->id) }}
                 @include('admin.article.partials._form', ['submitButtonText' => '儲存'])
             {!! Form::close() !!}

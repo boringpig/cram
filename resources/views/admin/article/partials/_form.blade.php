@@ -27,6 +27,13 @@
 </div>
 <div class="clearfix"></div><br>
 <div class="form-group">
+    {{ Form::label('article_image', '上傳圖片：', ['class' => 'col-sm-2 control-label']) }}
+    <div class="col-sm-9">
+        {{ Form::file('article_image') }}
+    </div>
+</div>
+<div class="clearfix"></div><br>
+<div class="form-group">
     {{ Form::label('body', '內容：', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-9">
         {{ Form::textarea('body', null, ['class' => 'form-control' ,'size' => '30x10']) }}

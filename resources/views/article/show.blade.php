@@ -23,7 +23,7 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+            <img src="{{ $article->present()->showImageUrl }}" alt="{{ $article->title }}" class="img-responsive" style="width: 900px;height: 300px;">
             <hr>
 
             <!-- Post Content -->

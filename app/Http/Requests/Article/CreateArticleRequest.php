@@ -26,7 +26,8 @@ class CreateArticleRequest extends Request
         return [
             'title' => 'required|min:3|max:255',
             'slug'  => 'required|min:6|max:255|unique:articles',
-            'body'  => 'required'
+            'body'  => 'required',
+            'article_image' => 'image'
         ];
     }
 }

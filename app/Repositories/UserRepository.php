@@ -7,7 +7,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Hash;
 use Intervention\Image\Facades\Image;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Storage;
 
 class UserRepository extends AbstractRepository
