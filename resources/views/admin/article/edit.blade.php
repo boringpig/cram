@@ -27,6 +27,17 @@
 @endsection
 
 @section('scripts')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector:'textarea',
+            menubar: false,
+            plugins: "link code table print preview textcolor colorpicker ",
+            toolbar1: 'bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect fontselect fontsizeselect forecolor backcolor',
+            toolbar2: '| bullist numlist outdent indent | link code table | print preview | undo redo',
+            toolbar_items_size: 'small'
+        });
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $(".select-single").select2();

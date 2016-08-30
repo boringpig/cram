@@ -33,7 +33,11 @@ class AvatarComposer
 	 */
 	public function compose(View $view)
 	{
-		$avatar_url = $this->user->getUserAvatarById(Auth::user()->id);
+		$avatar_url = '';
+		if (Auth::check()){
+			$avatar_url = $this->user->getUserAvatarById(Auth::user()->id);
+		}
+
 		$view->with('avatar_url', $avatar_url);
 	}
 }

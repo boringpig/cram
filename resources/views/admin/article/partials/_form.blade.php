@@ -29,7 +29,7 @@
 <div class="form-group">
     {{ Form::label('body', '內容：', ['class' => 'col-sm-2 control-label']) }}
     <div class="col-sm-9">
-        {{ Form::textarea('body', null, ['class' => 'form-control' ,'size' => '30x7']) }}
+        {{ Form::textarea('body', null, ['class' => 'form-control' ,'size' => '30x10']) }}
     </div>
 </div>
 <div class="clearfix"></div><br>

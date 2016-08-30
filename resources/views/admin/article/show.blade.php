@@ -19,7 +19,7 @@
 @section('content')
     <div class="row">
         <div class="col-sm-8 col-sm-offset-1">
-            <p class="lead">{{ $article->body }}</p>
+            <p class="lead">{!! $article->body !!}</p>
             <hr>
             <div class="tags">
                 @foreach($article->tags()->get() as $tag)

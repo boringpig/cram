@@ -19,7 +19,8 @@
         "uxweb/sweet-alert": "~1.1",
         "zizaco/entrust": "5.2.x-dev",
         "intervention/image": "2.3.7",
-        "league/flysystem-aws-s3-v3": "^1.0"
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "mews/purifier": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

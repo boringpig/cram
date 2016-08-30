@@ -3,8 +3,8 @@
 
 namespace App\Repositories;
 
-
 use App\Models\Article;
+use Mews\Purifier\Facades\Purifier;
 
 class ArticleRepository extends AbstractRepository
 {
@@ -27,7 +27,7 @@ class ArticleRepository extends AbstractRepository
 		$article->user_id = $user_id;
 		$article->title = $data['title'];
 		$article->slug = $data['slug'];
-		$article->body = $data['body'];
+		$article->body = Purifier::clean($data['body']);
 		$article->save();
 		if (isset($data['tags'])) {
 			$article->tags()->sync($data['tags']);
@@ -43,7 +43,7 @@ class ArticleRepository extends AbstractRepository
 		$article->category_id = $data['category_id'];
 		$article->title = $data['title'];
 		$article->slug = $data['slug'];
-		$article->body = $data['body'];
+		$article->body = Purifier::clean($data['body']);
 		$article->save();
 		if (isset($data['tags'])) {
 			$article->tags()->sync($data['tags']);

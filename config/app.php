@@ -156,6 +156,7 @@ return [
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Mews\Purifier\PurifierServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -217,7 +218,8 @@ return [
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Purifier' => Mews\Purifier\Facades\Purifier::class,
 
     ],
 
