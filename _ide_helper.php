@@ -13564,5 +13564,32 @@ if (! function_exists('with')) {
     }
 
 
+    class Purifier extends \Mews\Purifier\Facades\Purifier{
+        
+        /**
+         * 
+         *
+         * @param $dirty
+         * @param null $config
+         * @return mixed 
+         * @static 
+         */
+        public static function clean($dirty, $config = null){
+            return \Mews\Purifier\Purifier::clean($dirty, $config);
+        }
+        
+        /**
+         * Get HTMLPurifier instance.
+         *
+         * @return \HTMLPurifier 
+         * @static 
+         */
+        public static function getInstance(){
+            return \Mews\Purifier\Purifier::getInstance();
+        }
+        
+    }
+
+
 }
 

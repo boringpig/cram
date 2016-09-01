@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\UserService;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class PageController extends Controller

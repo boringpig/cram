@@ -132,6 +132,18 @@
                 </ul>
             </li>
 
+            <li>
+                <a><i class="fa fa-calendar"></i> 行事曆管理<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ route('backend.calendar_events.index') }}">事件總覽</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('backend.calendar_events.create') }}">新增事件</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

@@ -13,6 +13,7 @@
 
 //前端頁面Routes
 Route::get('/', ['as' => 'home', 'uses' => 'PageController@getHomePage']);
+Route::get('api/calendar', ['uses' => 'CalendarEventController@ajax_showAllEvent']);
 Route::resource('article', 'ArticleController');
 
 //應用程式登入Routes
@@ -107,5 +108,8 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Admin'], function(){
 	//標籤管理
 	Route::get('/tag', ['as' => 'backend.tag', 'uses' => 'TagController@manageTag']);
 	Route::resource('/tags', 'TagController');
+
+	/**** 行事曆管理Routes ****/
+	Route::resource('/calendar_events', 'CalendarEventController');
 });
 

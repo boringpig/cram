@@ -10,7 +10,6 @@
             font-size: 13pt;
         }
     </style>
-
 @endsection
 
 @section('page-title','新增文章')

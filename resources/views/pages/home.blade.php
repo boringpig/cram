@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('styles')
+    <link rel="stylesheet" href="{{ asset('src/fullcalendar/css/fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/fullcalendar/css/fullcalendar.print.css') }}" media='print'>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA1VjFo-tEonAZmKMA7yIzqyAwdhYrowAY"></script>
     <link rel="stylesheet" href="{{ asset('src/map_icon') }}">
     <script>
@@ -57,7 +59,7 @@
             @include('pages.partials._carousel')
         </div>
         <div class="col-sm-4">
-            @include('pages.partials._calendar')
+            @include('pages.partials._news')
         </div>
     </div>
     <hr>
@@ -68,6 +70,10 @@
 
     <div class="container text-center">
         @include('pages.partials._teacher_team')
+    </div>
+
+    <div class="container text-center">
+        @include('pages.partials._calendar')
     </div>
 
     <div class="container text-center">
