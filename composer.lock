@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "016a788bd38f88c58d08a68c9ef31607",
-    "content-hash": "1b13a8a37433a04dbf96775d65463ef6",
+    "hash": "4dd50474e08f0934ff2dbb66c6ad9385",
+    "content-hash": "a145ecbe368c4b7dfb7beed154d98d91",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -2183,6 +2183,52 @@
                 "utf8"
             ],
             "time": "2016-05-18 13:57:10"
+        },
+        {
+            "name": "petehouston/laravel-tinymce-simple-imageupload",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/petehouston/laravel-tinymce-simple-imageupload.git",
+                "reference": "13d0ee35db97645df942c2d730e00a8334612e30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/petehouston/laravel-tinymce-simple-imageupload/zipball/13d0ee35db97645df942c2d730e00a8334612e30",
+                "reference": "13d0ee35db97645df942c2d730e00a8334612e30",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": "~5.5|~7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Petehouston\\Tinymce\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pete Houston",
+                    "email": "contact@petehouston.com",
+                    "homepage": "http://petehouston.com"
+                }
+            ],
+            "description": "Simple image upload for TinyMCE in Laravel.",
+            "homepage": "https://github.com/petehouston/laravel-tinymce-simple-imageupload",
+            "keywords": [
+                "Image upload",
+                "laravel",
+                "laravel 5",
+                "php",
+                "tinymce"
+            ],
+            "time": "2016-08-26 13:25:21"
         },
         {
             "name": "proengsoft/laravel-jsvalidation",

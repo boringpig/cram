@@ -16,6 +16,14 @@ Route::get('/', ['as' => 'home', 'uses' => 'PageController@getHomePage']);
 Route::get('api/calendar', ['uses' => 'CalendarEventController@ajax_showAllEvent']);
 Route::resource('article', 'ArticleController');
 
+//聯絡我們Routes
+Route::get('contact', ['as' => 'contact.index', 'uses' => 'MessageController@getContactPage']);
+Route::post('contact-send', ['as' => 'contact.send', 'uses' => 'MessageController@postContactPage']);
+Route::get('contact/record', ['as' => 'contact.record', 'uses' => 'MessageController@getContactRecord']);
+Route::get('contact/show/{id}', ['as' => 'contact.show', 'uses' => 'MessageController@getShowContact']);
+Route::post('contact/replay', ['as' => 'contact.replay', 'uses' => 'MessageController@postReplayContact']);
+Route::post('contact/upload-img', ['as' => 'contact.upload', 'uses' => 'MessageController@postUploadImage']);
+
 //應用程式登入Routes
 Route::get('auth/social/login/{provider?}',['as' => 'auth.getSocialAuth', 'uses' => 'Auth\SocialController@getSocialAuth']);
 Route::get('auth/social/login/callback/{provider?}',['as' => 'auth.getSocialAuthCallback', 'uses' => 'Auth\SocialController@getSocialAuthCallback']);

@@ -157,6 +157,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Mews\Purifier\PurifierServiceProvider::class,
+        Petehouston\Tinymce\TinymceServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -12,7 +12,7 @@
             <ul class="nav navbar-nav">
                 <li class="{{ Request::is('/')? 'active' : '' }}"><a href="{{ route('home') }}">首頁</a></li>
                 <li class="{{ Request::is('article')? 'active' : '' }}"><a href="{{ route('article.index') }}">公告消息</a></li>
-                <li><a href="#">聯絡我們</a></li>
+                <li class="{{ Request::is('contact')? 'contact' : '' }}"><a href="{{ route('contact.index') }}">聯絡我們</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
@@ -27,6 +27,7 @@
                                 <li><a href="{{ route('clock-in.index') }}">上班打卡</a></li>
                                 <li><a href="{{ route('rollCall.index') }}">班級點名</a></li>
                             @endrole
+                            <li><a href="{{ route('contact.record') }}">訊息記錄</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}">登出</a></li>
                         </ul>

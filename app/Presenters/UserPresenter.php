@@ -55,7 +55,7 @@ class UserPresenter extends Presenter
 			return $s3->url($this->avatar);
 		}
 
-		return $this->avatar_url;
+		return $this->avatar;
 	}
 
 }

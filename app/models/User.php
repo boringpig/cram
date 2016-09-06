@@ -81,4 +81,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Lesson');
     }
+
+    public function messages()
+    {
+        return $this->hasMany('App\Models\Message');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany('App\Models\Reply');
+    }
 }
