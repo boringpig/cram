@@ -10,7 +10,13 @@ class UserPresenter extends Presenter
 {
 	public function loginType()
 	{
-		return ucfirst($this->account_type) . ' 登入';
+		if($this->account_type == 'normal'){
+			return '一般登入';
+		} elseif ($this->account_type == 'facebook'){
+			return 'Facebook登入';
+		} elseif ($this->account_type == 'google'){
+			return 'Google登入';
+		}
 	}
 
 	public function createdDate()

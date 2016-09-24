@@ -37,6 +37,11 @@ class UserController extends Controller
 		$this->log = $log;
 	}
 
+	/**
+	 * 顯示個人的使用記錄
+	 *
+	 * @return mixed
+	 */
 	public function getUserActivityLog()
 	{
 		$user_id = Auth::user()->id;
@@ -45,6 +50,11 @@ class UserController extends Controller
 		return view('user.activity-list', compact('activities'));
 	}
 
+	/**
+	 * 顯示編輯個人基本資料
+	 *
+	 * @return mixed
+	 */
 	public function getEditUser()
 	{
 		$user_id = Auth::user()->id;
@@ -54,6 +64,11 @@ class UserController extends Controller
 		return view('user.profile', compact('user', 'avatar_url'));
 	}
 
+	/**
+	 * 顯示更改個人密碼
+	 *
+	 * @return mixed
+	 */
 	public function getChangePassword()
 	{
 		$user_id = Auth::user()->id;
@@ -62,6 +77,12 @@ class UserController extends Controller
 		return view('user.setting', compact('user'));
 	}
 
+	/**
+	 * 更改個人密碼
+	 *
+	 * @param ChangePasswordRequest $request
+	 * @return mixed
+	 */
 	public function postChangePassword(ChangePasswordRequest $request)
 	{
 		$user = Auth::user();
@@ -70,6 +91,13 @@ class UserController extends Controller
 		return redirect()->back();
 	}
 
+	/**
+	 * 編輯個人基本資料
+	 *
+	 * @param EditProfileRequest $request
+	 * @param $id
+	 * @return mixed
+	 */
 	public function postEditUser(EditProfileRequest $request, $id)
 	{
 		$result = $this->user->editUserProfile($request->except('_method','_token'), $id, $request->ip());
@@ -79,6 +107,12 @@ class UserController extends Controller
 		return redirect()->route('user.profile');
 	}
 
+	/**
+	 * 更改個人帳戶大頭貼
+	 *
+	 * @param UserAvatarRequest $request
+	 * @return mixed
+	 */
 	public function postUserAvatar(UserAvatarRequest $request)
 	{
 		$this->user->UploadUserAvatar($request->allFiles());

@@ -127,8 +127,14 @@ class UserRepository extends AbstractRepository
 		return $teachers;
 	}
 
-	/*****************************前台管理********************************/
+	/*****************************前台管理*******************************
 
+	/**
+	 * 查詢個人大頭貼
+	 *
+	 * @param int $user_id
+	 * @return mixed|string
+	 */
 	public function getUserAvatarById(int $user_id)
 	{
 		$user = $this->model->find($user_id);
@@ -141,6 +147,13 @@ class UserRepository extends AbstractRepository
 	}
 
 
+	/**
+	 * 上傳更新的大頭貼
+	 *
+	 * @param array $data
+	 * @param User $user
+	 * @return User
+	 */
 	public function uploadUserAvatar(array $data, User $user)
 	{
 		$file = $data['avatar'];
@@ -164,6 +177,13 @@ class UserRepository extends AbstractRepository
 		return $user;
 	}
 
+	/**
+	 * 更新使用者密碼
+	 *
+	 * @param array $data
+	 * @param User $userObj
+	 * @return bool
+	 */
 	public function updateUserPassword(array $data, User $userObj) : bool
 	{
 		if (Hash::check($data['current_password'], $userObj->password)) {

@@ -18,19 +18,19 @@
             <table class="table table-responsive">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>狀態</th>
                         <th>事件描述</th>
-                        <th>日期</th>
+                        <th>IP位址</th>
+                        <th>時間</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($activities as $activity)
                         <tr>
-                            <td>{{ $activity->id }}</td>
                             <td>{{ $activity->log_name }}</td>
                             <td>{{ $activity->description }}</td>
-                            <td>{{ $activity->created_at }}</td>
+                            <td>{{ $activity->properties['ip'] }}</td>
+                            <td>{{ \Carbon\Carbon::parse($activity->created_at)->diffForHumans() }}</td>
                         </tr>
                     @endforeach
                 </tbody>

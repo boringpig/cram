@@ -47,7 +47,8 @@ class LogRepository
 		return $this->model
 			->where('causer_type', 'App\Models\User')
 			->where('causer_id', $user_id)
-			->paginate(5);
+			->orderBy('created_at', 'DESC')
+			->paginate(8);
 	}
 
 	/**

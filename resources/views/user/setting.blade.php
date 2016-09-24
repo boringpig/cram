@@ -11,7 +11,7 @@
         <h2>修改密碼</h2><br>
         <div class="col-md-7 col-md-offset-1">
             @include('partials._message')
-            @if(is_null($user->password))
+            @if($user->password == "")
                 <div class="alert alert-info" role="alert">
                     <strong>通知訊息!</strong>用其他應用程式登入，不需變更密碼～
                 </div>

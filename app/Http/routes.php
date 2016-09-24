@@ -49,7 +49,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function(){
 	Route::post('/account/user-avatar', ['as' => 'user.avatar', 'uses' => 'UserController@postUserAvatar']);
 });
 // 上班打卡Routes
-Route::group(['prefix' => 'clock', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'clock', 'middleware' => ['auth','role:工讀生|系統開發員']], function(){
 	Route::get('/log', ['as' => 'user-clock.log', 'uses' => 'UserController@getClockLog']);
 	Route::get('/view', ['as' => 'user-clock.view', 'uses' => 'UserController@getClockView']);
 	Route::post('/view/month', ['as' => 'user-clock.month', 'uses' => 'UserController@ajax_postClockMonth']);
@@ -61,7 +61,7 @@ Route::group(['prefix' => 'clock', 'middleware' => 'auth'], function(){
 	Route::get('/work/content', ['as' => 'work.content', 'uses' => 'WorkController@ajax_showAllWork']);
 });
 //班級點名Routes
-Route::group(['prefix' => 'rollCall', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'rollCall', 'middleware' => ['auth','role:工讀生|系統開發員']], function(){
 	Route::get('/', ['as' => 'rollCall.index', 'uses' => 'RollCallController@getRollCallIndex']);
 	Route::post('/search-lesson', ['as' => 'search.lesson', 'uses' => 'RollCallController@ajax_postSearchLesson']);
 	Route::post('/lesson', ['as' => 'rollCall.lesson', 'uses' => 'RollCallController@ajax_postRollCallLesson']);

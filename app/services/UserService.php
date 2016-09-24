@@ -69,10 +69,10 @@ class UserService
 	{
 		$result = $this->userRepository->updateUserPassword($data, $userObj);
 		if ($result) {
-			$this->logUserAccount('重設密碼', '密碼變更成功', []);
+			$this->logUserAccount('重設密碼', '密碼變更成功', ['ip' => \Request::ip()]);
 			Session::flash('success', '密碼變更成功');
 		} else {
-			$this->logUserAccount('重設密碼', '密碼變更失敗', []);
+			$this->logUserAccount('重設密碼', '密碼變更失敗', ['ip' => \Request::ip()]);
 			Session::flash('error', '與原本設定的密碼不相符');
 		}
 
@@ -98,7 +98,7 @@ class UserService
 		}
 		$user = $this->userRepository->update($data, $userId);
 		if ($user) {
-			$this->logUserAccount('個人檔案修改', '修改個人資料成功', []);
+			$this->logUserAccount('個人檔案修改', '修改個人資料成功', ['ip' => $userIP]);
 			Session::flash('success', '成功修改個人資料!');
 
 			return true;

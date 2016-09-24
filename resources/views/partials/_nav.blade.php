@@ -23,10 +23,10 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('user.profile') }}">個人帳戶</a></li>
-                            @role('工讀生')
+                            @ability('工讀生,系統開發員', '工讀行政')
                                 <li><a href="{{ route('clock-in.index') }}">上班打卡</a></li>
                                 <li><a href="{{ route('rollCall.index') }}">班級點名</a></li>
-                            @endrole
+                            @endability
                             <li><a href="{{ route('contact.record') }}">訊息記錄</a></li>
                             @permission('後端管理')
                             <li><a href="{{ route('backend.home') }}">前往後端管理</a></li>
