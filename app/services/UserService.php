@@ -235,6 +235,11 @@ class UserService
 		return $this->userRepository->getAllTeacher();
 	}
 
+	/**
+	 * 藉由陣列顯示全部老師
+	 *
+	 * @return array
+	 */
 	public function showAllTeacherByArray()
 	{
 		$teachers = $this->userRepository->getAllTeacher();

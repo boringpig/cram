@@ -15,22 +15,22 @@
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
-                        <tr>
-                            <th width="45%">主旨</th>
-                            <th width="20%">詢問對象</th>
-                            <th width="20%">發送日期</th>
-                            <th width="15%"></th>
-                        </tr>
+                            <tr>
+                                <th width="45%">主旨</th>
+                                <th width="20%">詢問對象</th>
+                                <th width="20%">發送日期</th>
+                                <th width="15%"></th>
+                            </tr>
                         </thead>
                         <tbody>
-                        @foreach($messages as $message)
-                            <tr>
-                                <td>{{ $message->title }}</td>
-                                <td>{{ $message->present()->showTeacherName }}</td>
-                                <td>{{ $message->present()->created_type }}</td>
-                                <td><a href="{{ route('contact.show', $message->message_id) }}">詳細資料 <i class="fa fa-angle-double-right"></i></a></td>
-                            </tr>
-                        @endforeach
+                            @foreach($messages as $message)
+                                <tr>
+                                    <td>{{ $message->title }}</td>
+                                    <td>{{ $message->present()->showTeacherName }}</td>
+                                    <td>{{ $message->present()->created_type }}</td>
+                                    <td><a href="{{ route('contact.show', $message->message_id) }}">詳細資料 <i class="fa fa-angle-double-right"></i></a></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="text-center">

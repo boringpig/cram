@@ -23,6 +23,14 @@ class ReplayRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 新增回覆訊息
+	 *
+	 * @param $data
+	 * @param $user_id
+	 * @param $message_id
+	 * @return Reply
+	 */
 	public function createReplay($data, $user_id, $message_id)
 	{
 		$replay = new Reply();

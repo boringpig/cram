@@ -19,7 +19,8 @@
         "intervention/image": "2.3.7",
         "league/flysystem-aws-s3-v3": "^1.0",
         "mews/purifier": "^2.0",
-        "petehouston/laravel-tinymce-simple-imageupload": "^1.0"
+        "petehouston/laravel-tinymce-simple-imageupload": "^1.0",
+        "guzzlehttp/guzzle": "~5.3|~6.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

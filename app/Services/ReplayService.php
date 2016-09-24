@@ -34,6 +34,12 @@ class ReplayService
 		$this->messageRepository = $messageRepository;
 	}
 
+	/**
+	 * 新增回覆
+	 *
+	 * @param array $data
+	 * @return \App\Models\Reply
+	 */
 	public function addReplay(array $data)
 	{
 		$message = $this->messageRepository->find($data['id']);

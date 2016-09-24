@@ -118,6 +118,11 @@ class UserRepository extends AbstractRepository
 		return $result;
 	}
 
+	/**                   
+	 * 用LIKE查詢老師
+	 * 
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
 	public function getAllTeacher()
 	{
 		$teachers = $this->model->with('roles')->whereHas('roles', function ($role_query) {

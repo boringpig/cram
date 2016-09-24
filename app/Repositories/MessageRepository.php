@@ -23,6 +23,13 @@ class MessageRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 新增訊息
+	 *
+	 * @param array $data
+	 * @param int $user_id
+	 * @return Message
+	 */
 	public function createMessage(array $data, int $user_id)
 	{
 		$message = new Message();
@@ -37,11 +44,23 @@ class MessageRepository extends AbstractRepository
 		return $message;
 	}
 
+	/**
+	 * 查詢個人的訊息記錄
+	 *
+	 * @param int $id
+	 * @return mixed
+	 */
 	public function getUserContactRecord(int $id)
 	{
 		return Message::where('user_id', $id)->orWhere('teacher_id', $id)->paginate(8);
 	}
 
+	/**
+	 * 查詢單一訊息
+	 *
+	 * @param $id
+	 * @return mixed
+	 */
 	public function getContactById($id)
 	{
 		return $this->model->where('message_id', $id)->first();

@@ -4,20 +4,27 @@ namespace App\Listeners;
 
 use App\Events\MessageSent;
 use App\Models\User;
+use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Mail;
 
 class SendNotification
 {
+
+    /**
+     * @var Mailer
+     */
+    private $mailer;
+
     /**
      * Create the event listener.
      *
-     * @return void
+     * @param Mailer $mailer
      */
-    public function __construct()
+    public function __construct(Mailer $mailer)
     {
         //
+        $this->mailer = $mailer;
     }
 
     /**
@@ -32,8 +39,10 @@ class SendNotification
         $user = $contact_message->user()->first();
         $teacher = User::where('id', '=', $contact_message->teacher_id)->first();
 
-        Mail::send('email.message-notification', ['contact_message' => $contact_message, 'user' => $user], function($message) use ($contact_message, $teacher){
-            $message->to($teacher->email, $teacher->name);
+       $this->mailer->send('email.message-notification', ['contact_message' => $contact_message, 'user' => $user], function($message) use ($contact_message, $teacher){
+            $message->from('jefferyboringpig@gmail.com', '系統郵件請勿回覆');
+//            $message->to($teacher->email, $teacher->name);
+            $message->to('aaa153759g@gmail.com', $teacher->name);
             $message->subject('有新的訊息來自：' . $contact_message->email);
         });
     }

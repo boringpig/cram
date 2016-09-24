@@ -45,6 +45,11 @@ class MessageController extends Controller
 		$this->replay = $replay;
 	}
 
+	/**
+	 * 顯示聯絡我們
+	 *
+	 * @return mixed
+	 */
 	public function getContactPage()
 	{
 		$user = $this->user->showUserById(Auth::user()->id);
@@ -53,6 +58,12 @@ class MessageController extends Controller
 		return view('pages.contact.index', compact('user', 'teacher_list'));
 	}
 
+	/**
+	 * 發送訊息
+	 *
+	 * @param MessageRequest $request
+	 * @return mixed
+	 */
 	public function postContactPage(MessageRequest $request)
 	{
 		$this->message->addMessage($request->all(), Auth::user()->id);
@@ -61,6 +72,11 @@ class MessageController extends Controller
 		return redirect()->back();
 	}
 
+	/**
+	 * 顯示聯絡記錄
+	 *
+	 * @return mixed
+	 */
 	public function getContactRecord()
 	{
 		$messages = $this->message->showUserContactRecord();
@@ -68,6 +84,12 @@ class MessageController extends Controller
 		return view('pages.contact.record', compact('messages'));
 	}
 
+	/**
+	 * 顯示單一訊息記錄
+	 *
+	 * @param $id
+	 * @return mixed
+	 */
 	public function getShowContact($id)
 	{
 		$message = $this->message->showContactById($id);
@@ -75,6 +97,12 @@ class MessageController extends Controller
 		return view('pages.contact.show', compact('message'));
 	}
 
+	/**
+	 * 回覆訊息
+	 *
+	 * @param ReplayRequest $request
+	 * @return mixed
+	 */
 	public function postReplayContact(ReplayRequest $request)
 	{
 		$this->replay->addReplay($request->all());
@@ -82,6 +110,12 @@ class MessageController extends Controller
 		return redirect()->back();
 	}
 
+	/**                      
+	 * 上傳回覆的圖片
+	 * 
+	 * @param Request $request
+	 * @return mixed
+	 */
 	public function postUploadImage(Request $request)
 	{
 		$file = $request->file('image');

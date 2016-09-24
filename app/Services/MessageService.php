@@ -27,6 +27,13 @@ class MessageService
 		$this->messageRepository = $messageRepository;
 	}
 
+	/**
+	 * 新增訊息
+	 *
+	 * @param array $data
+	 * @param int $user_id
+	 * @return \App\Models\Message
+	 */
 	public function addMessage(array $data, int $user_id)
 	{
 		$message = $this->messageRepository->createMessage($data, $user_id);
@@ -35,11 +42,22 @@ class MessageService
 		return $message;
 	}
 
+	/**
+	 * 顯示個人訊息記錄
+	 *
+	 * @return mixed
+	 */
 	public function showUserContactRecord()
 	{
 		return $this->messageRepository->getUserContactRecord(Auth::user()->id);
 	}
 
+	/**
+	 * 顯示單一訊息記錄
+	 *
+	 * @param $id
+	 * @return mixed
+	 */
 	public function showContactById($id)
 	{
 		return $this->messageRepository->getContactById($id);
