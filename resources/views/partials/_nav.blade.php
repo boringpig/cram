@@ -28,6 +28,9 @@
                                 <li><a href="{{ route('rollCall.index') }}">班級點名</a></li>
                             @endrole
                             <li><a href="{{ route('contact.record') }}">訊息記錄</a></li>
+                            @permission('後端管理')
+                            <li><a href="{{ route('backend.home') }}">前往後端管理</a></li>
+                            @endpermission
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}">登出</a></li>
                         </ul>

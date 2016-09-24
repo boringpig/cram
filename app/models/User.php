@@ -40,7 +40,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  */
 class User extends Authenticatable
 {
-    use PresentableTrait, EntrustUserTrait;
+    use PresentableTrait,EntrustUserTrait;
 
     protected $presenter = 'App\Presenters\UserPresenter';
 
@@ -49,7 +49,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable  = [
         'name', 'email', 'password', 'avatar_url', 'status', 'account_type', 'sns_acc_id'
     ];
 

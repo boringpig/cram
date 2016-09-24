@@ -33,6 +33,7 @@ class StudentController extends AdminController
         $this->student = $student;
         $this->lesson = $lesson;
         parent::__construct();
+        $this->middleware('permission:系統管理|班級事務');
     }
 
 

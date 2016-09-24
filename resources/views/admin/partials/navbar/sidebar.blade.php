@@ -16,7 +16,7 @@
             <li>
                 <a href="{{ route('backend.home') }}"><i class="fa fa-dashboard"></i> 首頁</a>
             </li>
-
+            @permission('系統管理')
             <li>
                 <a><i class="fa fa-users"></i> 會員管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -27,10 +27,12 @@
                         <a href="{{ route('backend.users.create') }}">新增會員</a>
                     </li>
                     <li>
-                        <a href="#">登入記錄</a>
+                        <a href="{{ route('backend.users.log') }}">使用記錄</a>
                     </li>
                 </ul>
             </li>
+            @endpermission
+            @permission('系統管理')
             <li>
                 <a><i class="fa fa-briefcase"></i> 職務管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -56,11 +58,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">使用記錄</a>
-                    </li>
                 </ul>
             </li>
+            @endpermission
+            @ability('系統管理員,系統開發員', '系統管理,人事管理')
             <li>
                 <a><i class="fa fa-users"></i> 工讀生管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -75,6 +76,8 @@
                     </li>
                 </ul>
             </li>
+            @endability
+            @ability('系統管理員,系統開發員', '系統管理,班級事務')
             <li>
                 <a><i class="fa fa-university"></i> 班級管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -103,6 +106,7 @@
                     </li>
                 </ul>
             </li>
+            @endability
             <li>
                 <a><i class="fa fa-users"></i> 學生管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -114,6 +118,7 @@
                     </li>
                 </ul>
             </li>
+            @ability('系統管理員,系統開發員', '系統管理,班級公告')
             <li>
                 <a><i class="fa fa-list-alt"></i> 公告管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -131,7 +136,8 @@
                     </li>
                 </ul>
             </li>
-
+            @endability
+            @ability('系統管理員,系統開發員', '系統管理,班級公告')
             <li>
                 <a><i class="fa fa-calendar"></i> 行事曆管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -143,7 +149,7 @@
                     </li>
                 </ul>
             </li>
-
+            @endability
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

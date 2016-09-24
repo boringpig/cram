@@ -31,6 +31,7 @@ use Laracasts\Presenter\PresentableTrait;
  */
 class Article extends Model
 {
+
 	use PresentableTrait;
 
 	protected $presenter = 'App\Presenters\ArticlePresenter';

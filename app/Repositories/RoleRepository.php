@@ -20,6 +20,12 @@ class RoleRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 新增角色
+	 *
+	 * @param array $data
+	 * @return Role
+	 */
 	public function createRole(array $data)
 	{
 		$role = new Role();
@@ -36,6 +42,13 @@ class RoleRepository extends AbstractRepository
 		return $role;
 	}
 
+	/**
+	 * 編輯角色
+	 *
+	 * @param array $data
+	 * @param int $id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function updateRole(array $data, int $id)
 	{
 		$role = $this->model->find($id);
@@ -52,6 +65,12 @@ class RoleRepository extends AbstractRepository
 		return $role;
 	}
 
+	/**
+	 * 刪除角色
+	 *
+	 * @param int $id
+	 * @return mixed
+	 */
 	public function deleteRole(int $id)
 	{
 		return $this->model->where('id', $id)->delete();

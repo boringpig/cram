@@ -47,6 +47,7 @@ class LessonController extends AdminController
         $this->user = $user;
         $this->time = $time;
         parent::__construct();
+        $this->middleware('permission:系統管理|班級事務');
     }
 
 

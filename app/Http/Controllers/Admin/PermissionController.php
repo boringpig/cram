@@ -26,6 +26,7 @@ class PermissionController extends AdminController
     {
         $this->permission = $permission;
         parent::__construct();
+        $this->middleware('role:系統管理員|系統開發員');
     }
 
 

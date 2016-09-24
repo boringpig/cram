@@ -42,6 +42,7 @@ class ArticleController extends AdminController
         $this->category = $category;
         $this->tag = $tag;
         parent::__construct();
+        $this->middleware('permission:系統管理|班級公告');
     }
 
 

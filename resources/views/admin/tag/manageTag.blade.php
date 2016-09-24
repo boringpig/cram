@@ -27,6 +27,7 @@
             <div class="well">
                 <h2>新增標籤</h2>
                 <form id="create-form" action="{{ route('backend.tags.store') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" placeholder="請輸入標籤名稱">
                     </div>

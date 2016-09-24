@@ -65,7 +65,7 @@ class UserRepository extends AbstractRepository
 
 	public function getAllServitor()
 	{
-		$servitors = $this->model->with('roles')->whereHas('roles', function($role_query) {
+		$servitors = $this->model->with('roles')->whereHas('roles', function ($role_query) {
 			$role_query->where('name', '=', '工讀生');
 		})->with('clockIns')->paginate(8);
 
@@ -81,7 +81,7 @@ class UserRepository extends AbstractRepository
 
 	public function getAllServitorClockMonth(array $data)
 	{
-		$servitors = $this->model->with('roles')->whereHas('roles', function($role_query){
+		$servitors = $this->model->with('roles')->whereHas('roles', function ($role_query) {
 			$role_query->where('name', '=', '工讀生');
 		})->with('clockIns')->get();
 
@@ -91,9 +91,9 @@ class UserRepository extends AbstractRepository
 		$math_tutor = 0;
 		$eng_tutor = 0;
 
-		foreach ($servitors as $servitor){
+		foreach ($servitors as $servitor) {
 			$cards = $servitor->clockins()->whereMonth('on_duty', '=', $data['month'])->get();
-			foreach ($cards as $card){
+			foreach ($cards as $card) {
 				$total_hour = $total_hour + $card->total_hour;
 				foreach ($card->works()->get() as $work) {
 					if ($work->name == '一般工讀') {
@@ -101,16 +101,18 @@ class UserRepository extends AbstractRepository
 					} elseif ($work->name == '數學家教') {
 						$math_tutor = $math_tutor + $work->pivot->hour;
 					} elseif ($work->name == '英文家教') {
-						$eng_tutor  = $eng_tutor + $work->pivot->hour;
+						$eng_tutor = $eng_tutor + $work->pivot->hour;
 					}
 				}
 			}
 
-			$result[] = (object) ['姓名'=> $servitor->name,
-								  '總時數' => $total_hour,
-								  '一般工讀' => $normal,
-								  '數學家教' => $math_tutor,
-								  '英文家教' => $eng_tutor];
+			$result[] = (object)[
+				'姓名'   => $servitor->name,
+				'總時數'  => $total_hour,
+				'一般工讀' => $normal,
+				'數學家教' => $math_tutor,
+				'英文家教' => $eng_tutor
+			];
 		}
 
 		return $result;
@@ -118,8 +120,8 @@ class UserRepository extends AbstractRepository
 
 	public function getAllTeacher()
 	{
-		$teachers = $this->model->with('roles')->whereHas('roles', function($role_query){
-			$role_query->where('name', 'LIKE' , '%老師');
+		$teachers = $this->model->with('roles')->whereHas('roles', function ($role_query) {
+			$role_query->where('name', 'LIKE', '%老師');
 		})->get();
 
 		return $teachers;
@@ -131,7 +133,7 @@ class UserRepository extends AbstractRepository
 	{
 		$user = $this->model->find($user_id);
 		$s3 = Storage::cloud();
-		if ($s3->has($user->avatar)){
+		if ($s3->has($user->avatar)) {
 			return $s3->url($user->avatar);
 		}
 
@@ -143,11 +145,11 @@ class UserRepository extends AbstractRepository
 	{
 		$file = $data['avatar'];
 		$fileName = $user->id . '.jpg';
-		$image = (string) Image::make($file)->encode('jpg', 75)->resize(300, 300);
+		$image = (string)Image::make($file)->encode('jpg', 75)->resize(300, 300);
 		$filePath = 'avatars/' . $fileName;
 		$s3 = Storage::cloud();
 		//判斷是否有此使用者的大頭貼
-		if ($s3->has($filePath)){
+		if ($s3->has($filePath)) {
 			//有的話修改此大頭貼
 			$s3->delete($filePath);
 			$s3->put($filePath, $image, 'public');
@@ -175,6 +177,13 @@ class UserRepository extends AbstractRepository
 		}
 	}
 
+	/**
+	 * 建立應用程式登入的使用者
+	 *
+	 * @param string $type
+	 * @param $userObj
+	 * @return User
+	 */
 	public function findOrCreateSocialUser(string $type, $userObj): User
 	{
 		$user = $this->model
@@ -188,7 +197,7 @@ class UserRepository extends AbstractRepository
 		$user = $this->model->create([
 			'name'         => isset($userObj->name) ? $userObj->name : '',
 			'email'        => isset($userObj->email) ? $userObj->email : '',
-			'avatar'   => isset($userObj->avatar) ? $userObj->avatar : 'avatars/default.jpg',
+			'avatar'       => isset($userObj->avatar) ? $userObj->avatar : 'avatars/default.jpg',
 			'sns_acc_id'   => $userObj->id,
 			'account_type' => $type,
 			'status'       => 1
@@ -250,7 +259,7 @@ class UserRepository extends AbstractRepository
 				} elseif ($work->name == '數學家教') {
 					$math_tutor = $math_tutor + $work->pivot->hour;
 				} elseif ($work->name == '英文家教') {
-					$eng_tutor  = $eng_tutor + $work->pivot->hour;
+					$eng_tutor = $eng_tutor + $work->pivot->hour;
 				}
 			}
 		}
@@ -258,7 +267,8 @@ class UserRepository extends AbstractRepository
 			'總時數'  => $total_hour,
 			'一般工讀' => $normal,
 			'數學家教' => $math_tutor,
-			'英文家教' => $eng_tutor];
+			'英文家教' => $eng_tutor
+		];
 
 		return $month_works;
 	}

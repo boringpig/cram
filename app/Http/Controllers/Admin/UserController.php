@@ -9,10 +9,7 @@ use App\Services\LogService;
 use App\Services\RoleService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Response;
 
 class UserController extends AdminController
 {
@@ -43,8 +40,20 @@ class UserController extends AdminController
         $this->role = $role;
         $this->log = $log;
         parent::__construct();
+        $this->middleware('role:系統管理員|系統開發員');
     }
 
+	/**
+     * 顯示全部使用者的使用記錄
+     *
+     * @return mixed
+     */
+    public function getAllUserActivityLog()
+    {
+        $logs = $this->log->showAllUserActivityLog();
+
+        return view('admin.user.log', compact('logs'));
+    }
 
     /**
      * Display a listing of the resource.
@@ -79,6 +88,7 @@ class UserController extends AdminController
     public function store(CreateUserRequest $request)
     {
         $this->user->addUser($request->all());
+
         return redirect()->route('backend.users.index');
     }
 
@@ -92,6 +102,7 @@ class UserController extends AdminController
     {
         $user = $this->user->showUserById($id);
         $latest_login = $this->log->showUserLatestLogin($id);
+
         return view('admin.user.show', compact('user', 'latest_login'));
     }
 

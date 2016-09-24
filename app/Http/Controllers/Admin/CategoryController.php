@@ -28,6 +28,7 @@ class CategoryController extends AdminController
     {
         $this->category = $category;
         parent::__construct();
+        $this->middleware('permission:系統管理|班級公告');
     }
 
     public function manageCategory()

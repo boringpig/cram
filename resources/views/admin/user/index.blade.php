@@ -38,8 +38,10 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="text-center">
-                    {!! $users->links() !!}
+                <div class="col-sm-9 col-sm-offset-1">
+                    <div class="text-center">
+                        {!! $users->links() !!}
+                    </div>
                 </div>
             </div>
         </div>

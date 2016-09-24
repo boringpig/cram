@@ -10,6 +10,10 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class MessageSent extends Event
 {
     use SerializesModels;
+    /**
+     * @var Message
+     */
+    public $message;
 
     /**
      * Create a new event instance.
@@ -18,6 +22,7 @@ class MessageSent extends Event
      */
     public function __construct(Message $message)
     {
+
         $this->message = $message;
     }
 

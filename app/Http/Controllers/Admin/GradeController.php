@@ -25,6 +25,7 @@ class GradeController extends AdminController
     {
         parent::__construct();
         $this->grade = $grade;
+        $this->middleware('permission:系統管理|班級事務');
     }
 
 

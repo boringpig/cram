@@ -26,6 +26,7 @@ class WorkController extends AdminController
     {
         $this->work = $work;
         parent::__construct();
+        $this->middleware('permission:系統管理|人事管理');
     }
 
     public function manageWork()

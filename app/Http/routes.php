@@ -73,6 +73,7 @@ Route::group(['prefix' => 'backend', 'namespace' => 'Admin'], function(){
 	Route::get('/', ['as' => 'backend.home', 'uses' => 'DashboardController@getIndex']);
 	/**** 使用者管理Routes ****/
 	//人事管理
+	Route::get('/users/log', ['as' => 'backend.users.log', 'uses' => 'UserController@getAllUserActivityLog']);
 	Route::resource('/users', 'UserController');
 	//角色管理
 	Route::resource('/roles', 'RoleController');

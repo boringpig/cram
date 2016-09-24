@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\AdminController;
 use App\Services\RollCallService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
-class RollCallController extends Controller
+class RollCallController extends AdminController
 {
 
 	/**
@@ -25,6 +25,8 @@ class RollCallController extends Controller
 	public function __construct(RollCallService $rollCall)
 	{
 		$this->rollCall = $rollCall;
+		parent::__construct();
+		$this->middleware('permission:系統管理|班級事務');
 	}
 
 	public function getRollCallViewDate()

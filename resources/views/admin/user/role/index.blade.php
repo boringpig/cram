@@ -30,8 +30,10 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="text-center">
-                    {!! $roles->links() !!}
+                <div class="col-sm-9 col-sm-offset-1">
+                    <div class="text-center">
+                        {!! $roles->links() !!}
+                    </div>
                 </div>
             </div>
         </div>

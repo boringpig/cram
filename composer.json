@@ -8,11 +8,9 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-ide-helper": "v2.2.1",
-        "doctrine/dbal": "2.3.5",
         "laravelcollective/html": "v5.2.4",
         "laravel/socialite": "^2.0",
         "laracasts/presenter": "0.2.1",
-        "recca0120/laravel-tracy": "1.5.x-dev",
         "spatie/laravel-activitylog": "^1.2",
         "caouecs/laravel-lang": "~3.0",
         "proengsoft/laravel-jsvalidation": "~1.1",
@@ -28,7 +26,9 @@
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
-        "symfony/dom-crawler": "2.8.*|3.0.*"
+        "symfony/dom-crawler": "2.8.*|3.0.*",
+        "recca0120/laravel-tracy": "1.5.x-dev",
+        "doctrine/dbal": "2.3.5"
     },
     "autoload": {
         "classmap": [

@@ -5,6 +5,7 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('src/css/bootstrap-social.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/css/sweetalert.css') }}">
 @endsection
 
 @section('content')
@@ -26,7 +27,7 @@
                     {{ Form::password('password', ['class' => 'form-control', 'placeholder' => '請輸入密碼']) }}
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox"> 記住我</label>
+                    <label><input type="checkbox" name="remember"> 記住我</label>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="form-control btn btn-primary btn-block">登入</button>
@@ -51,4 +52,9 @@
             {!! Form::close() !!}
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('src/js/sweetalert.min.js') }}"></script>
+    @include('sweet::alert')
 @endsection

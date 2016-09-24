@@ -23,8 +23,9 @@ class TimeController extends AdminController
      */
     public function __construct(TimeService $time)
     {
-        parent::__construct();
         $this->time = $time;
+        parent::__construct();
+        $this->middleware('permission:系統管理|班級事務');
     }
 
     public function manageTime()

@@ -26,6 +26,11 @@ class CalendarEventController extends Controller
 		$this->calendarEvent = $calendarEvent;
 	}
 
+	/**
+	 * ajax顯是全部的日曆事件
+	 *
+	 * @return mixed
+	 */
 	public function ajax_showAllEvent()
 	{
 		$events = $this->calendarEvent->showAllEvent();

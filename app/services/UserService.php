@@ -163,7 +163,12 @@ class UserService
 	}
 
 	/*****************************後台管理*********************************/
-	//所有會員
+
+	/**
+	 * 顯示全部的會員
+	 *
+	 * @return \Illuminate\Database\Eloquent\Collection
+	 */
 	public function showAllUser()
 	{
 		$users = $this->userRepository->paginate(8);
@@ -171,6 +176,12 @@ class UserService
 		return $users;
 	}
 
+	/**
+	 * 手動新增使用者
+	 *
+	 * @param array $data
+	 * @return null
+	 */
 	public function addUser(array $data)
 	{
 		$this->userRepository->createUser($data);
@@ -179,11 +190,24 @@ class UserService
 		return null;
 	}
 
+	/**
+	 * 編輯使用者
+	 *
+	 * @param array $data
+	 * @param int $id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function editUser(array $data, int $id)
 	{
 		return $this->userRepository->updateUser($data, $id);
 	}
 
+	/**
+	 * 刪除使用者
+	 *
+	 * @param int $id
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
 	public function deleteUser(int $id)
 	{
 		return $this->userRepository->delete($id);
