@@ -23,6 +23,13 @@ class ClockInRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 存入目前使用者簽到記錄
+	 *
+	 * @param $time
+	 * @param $userObj
+	 * @return ClockIn
+	 */
 	public function UserClockIn($time, $userObj)
 	{
 	 	$card = new ClockIn();
@@ -33,6 +40,13 @@ class ClockInRepository extends AbstractRepository
 		return $card;
 	}
 
+	/**
+	 * 存入目前使用者簽退記錄
+	 *
+	 * @param Carbon $time
+	 * @param array $data
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function UserClockOut(Carbon $time, array $data)
 	{
 		//找出上班打卡的單子

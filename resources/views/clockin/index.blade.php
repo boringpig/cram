@@ -5,6 +5,7 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('src/css/clock.css') }}">
     <link rel="stylesheet" href="{{ asset('src/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/css/sweetalert.css') }}">
     <style>
         .card {
             padding: 10px;
@@ -55,6 +56,7 @@
     <script src="{{ asset('src/js/clock.js') }}"></script>
     <script src="{{ asset('src/js/moment.min.js') }}"></script>
     <script src="{{ asset('src/js/select2.min.js') }}"></script>
+    <script src="{{ asset('src/js/sweetalert.min.js') }}"></script>
     <script type="text/javascript">
         var id = "{{ Auth::user()->id }}";
         var url = "{{ route('clock-in.manage') }}";

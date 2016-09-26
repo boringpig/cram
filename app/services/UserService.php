@@ -124,6 +124,11 @@ class UserService
 		return $this->userRepository->uploadUserAvatar($data, $user);
 	}
 
+	/**
+	 * 顯示個人全部打卡記錄
+	 *
+	 * @return mixed
+	 */
 	public function showUserAllClockCardByLatest()
 	{
 		$user_id = Auth::user()->id;
@@ -131,6 +136,11 @@ class UserService
 		return $this->userRepository->getUserAllClockCardLatest($user_id);
 	}
 
+	/**
+	 * 顯示使用者可選擇月份
+	 *
+	 * @return array
+	 */
 	public function showUserSelectMonth()
 	{
 		$user_id = Auth::user()->id;
@@ -138,6 +148,12 @@ class UserService
 		return $this->userRepository->getUserSelectMonth($user_id);
 	}
 
+	/**
+	 * 顯示使用者選擇月份的打卡記錄
+	 *
+	 * @param array $data
+	 * @return array
+	 */
 	public function showUserClockMonth(array $data)
 	{
 		$user_id = Auth::user()->id;
@@ -145,6 +161,11 @@ class UserService
 		return $this->userRepository->getUserClockMonth($data, $user_id);
 	}
 
+	/**
+	 * 顯示使用者最近打卡記錄
+	 *
+	 * @return mixed
+	 */
 	public function showUserLatestClock()
 	{
 		$user_id = Auth::user()->id;
@@ -152,11 +173,22 @@ class UserService
 		return $this->userRepository->getUserLatestClock($user_id);
 	}
 
+	/**
+	 * 當前時間上班簽到
+	 *
+	 * @return \App\Models\ClockIn
+	 */
 	public function postUserClockIn()
 	{
 		return $this->clockInRepository->UserClockIn(Carbon::now(),Auth::user());
 	}
 
+	/**
+	 * 當前時間下班簽退
+	 *
+	 * @param array $data
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function postUserClockOut(array $data)
 	{
 		return $this->clockInRepository->UserClockOut(Carbon::now(), $data);
@@ -213,23 +245,43 @@ class UserService
 		return $this->userRepository->delete($id);
 	}
 
-	//所有工讀生
+	/**
+	 * 顯示全部的工讀生
+	 *
+	 * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+	 */
 	public function showAllServitor()
 	{
 		return $this->userRepository->getAllServitor();
 	}
 
+	/**
+	 * 顯示個人打卡記錄
+	 *
+	 * @param int $id
+	 * @return mixed
+	 */
 	public function showServitorClockInLog(int $id)
 	{
 		return $this->userRepository->getServitorClockInLog($id);
 	}
 
+	/**
+	 * 顯示當月工讀生總時數
+	 *
+	 * @param array $data
+	 * @return array
+	 */
 	public function showAllServitorClockMonth(array $data)
 	{
 		return $this->userRepository->getAllServitorClockMonth($data);
 	}
 
-	//所有老師
+	/**
+	 * 顯示全部老師
+	 *
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
 	public function showAllTeachers()
 	{
 		return $this->userRepository->getAllTeacher();

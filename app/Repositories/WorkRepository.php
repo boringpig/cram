@@ -21,11 +21,23 @@ class WorkRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 查詢最新工作
+	 *
+	 * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+	 */
 	public function getLatestWork()
 	{
 		return $this->model->latest()->paginate(5);
 	}
 
+	/**
+	 * 一種工作可以attach多張工作表
+	 *
+	 * @param ClockIn $cardObj
+	 * @param array $data
+	 * @return null
+	 */
 	public function attachUserWork(ClockIn $cardObj, array $data)
 	{
 		$works = $data['work'];

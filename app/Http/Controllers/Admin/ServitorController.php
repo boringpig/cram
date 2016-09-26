@@ -28,11 +28,22 @@ class ServitorController extends AdminController
         $this->middleware('role:系統管理員|系統開發員');
     }
 
+	/**
+     *
+     * 顯示查詢時數月報表
+     * @return mixed
+     */
     public function getClockView()
     {
         return view('admin.servitor.view-month');
     }
 
+	/**
+     * AJAX查詢月時數
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function ajax_postClockMonth(Request $request)
     {
         $card_month = $this->user->showAllServitorClockMonth($request->all());

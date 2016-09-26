@@ -45,13 +45,13 @@
                 <h2 class="text-center">打卡歷史紀錄</h2>
                 <hr>
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-bordered text-center">
                         <thead>
                             <tr>
-                                <th>上班時間</th>
-                                <th>下班時間</th>
-                                <th>總時數</th>
-                                <th>工作內容</th>
+                                <th class="text-center">上班時間</th>
+                                <th class="text-center">下班時間</th>
+                                <th class="text-center">總時數</th>
+                                <th class="text-center">工作內容</th>
                             </tr>
                         </thead>
                         <tbody>

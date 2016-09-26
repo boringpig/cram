@@ -63,10 +63,10 @@
             @endpermission
             @ability('系統管理員,系統開發員', '系統管理,人事管理')
             <li>
-                <a><i class="fa fa-users"></i> 工讀生管理<span class="fa arrow"></span></a>
+                <a><i class="fa fa-users"></i> 打卡管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ route('backend.servitors.index') }}">工讀生總覽</a>
+                        <a href="{{ route('backend.servitors.index') }}">打卡總覽</a>
                     </li>
                     <li>
                         <a href="{{ route('backend.work') }}">工作總覽</a>

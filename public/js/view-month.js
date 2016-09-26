@@ -4,6 +4,7 @@ $.ajaxSetup({
     }
 });
 
+//查詢工讀月份的表單
 $("#search-month-form").submit(function (e) {
     e.preventDefault();
     var form_action = $("#search-month-form").attr("action");
@@ -15,18 +16,19 @@ $("#search-month-form").submit(function (e) {
         data: {month: form_month},
         dataType: 'json'
     }).done(function (data) {
-        console.log(data);
+        //console.log(data);
         manageTotalHour(data);
     });
 });
 
+//顯示當月總時數
 function manageTotalHour(data) {
     var rows = '';
     rows = rows + '<div class="table-responsive">';
     rows = rows + '<table class="table table-hover table-bordered text-center">';
     rows = rows + '<thead><tr>';
     $.each( data, function( key, value ) {
-        rows = rows + '<th class="text-center" width="25%">' + key + '</th>';
+        rows = rows + '<th class="text-center" width="20%">' + key + '</th>';
     });
     rows = rows + '</tr></thead>';
     rows = rows + '<tbody><tr>';

@@ -41,8 +41,7 @@ class SendNotification
 
        $this->mailer->send('email.message-notification', ['contact_message' => $contact_message, 'user' => $user], function($message) use ($contact_message, $teacher){
             $message->from('jefferyboringpig@gmail.com', '系統郵件請勿回覆');
-//            $message->to($teacher->email, $teacher->name);
-            $message->to('aaa153759g@gmail.com', $teacher->name);
+            $message->to($teacher->email, $teacher->name);
             $message->subject('有新的訊息來自：' . $contact_message->email);
         });
     }

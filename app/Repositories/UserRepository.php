@@ -26,7 +26,14 @@ class UserRepository extends AbstractRepository
 		parent::__construct();
 	}
 
-	/*****************************後台管理*********************************/
+	/*****************************後台管理********************************
+
+	/**
+	 * 手動新增使用者
+	 *
+	 * @param array $data
+	 * @return User
+	 */
 	public function createUser(array $data)
 	{
 		$status = isset($data['status']) ? $data['status'] : 0;
@@ -46,6 +53,13 @@ class UserRepository extends AbstractRepository
 		return $user;
 	}
 
+	/**
+	 * 手動更新使用者
+	 *
+	 * @param array $data
+	 * @param int $id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function updateUser(array $data, int $id)
 	{
 		$status = isset($data['status']) ? $data['status'] : 0;
@@ -63,6 +77,11 @@ class UserRepository extends AbstractRepository
 		return $user;
 	}
 
+	/**
+	 * 查詢全部工讀生
+	 *
+	 * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+	 */
 	public function getAllServitor()
 	{
 		$servitors = $this->model->with('roles')->whereHas('roles', function ($role_query) {
@@ -72,6 +91,12 @@ class UserRepository extends AbstractRepository
 		return $servitors;
 	}
 
+	/**
+	 * 查詢個人打卡記錄
+	 *
+	 * @param int $id
+	 * @return mixed
+	 */
 	public function getServitorClockInLog(int $id)
 	{
 		$servitor = $this->model->find($id);
@@ -79,6 +104,12 @@ class UserRepository extends AbstractRepository
 		return $servitor->clockins()->latest('on_duty')->with('works')->paginate(8);
 	}
 
+	/**
+	 * 查詢各工讀生當月總時數
+	 *
+	 * @param array $data
+	 * @return array
+	 */
 	public function getAllServitorClockMonth(array $data)
 	{
 		$servitors = $this->model->with('roles')->whereHas('roles', function ($role_query) {
@@ -90,6 +121,7 @@ class UserRepository extends AbstractRepository
 		$normal = 0;
 		$math_tutor = 0;
 		$eng_tutor = 0;
+		$read_tutor = 0;
 
 		foreach ($servitors as $servitor) {
 			$cards = $servitor->clockins()->whereMonth('on_duty', '=', $data['month'])->get();
@@ -102,25 +134,34 @@ class UserRepository extends AbstractRepository
 						$math_tutor = $math_tutor + $work->pivot->hour;
 					} elseif ($work->name == '英文家教') {
 						$eng_tutor = $eng_tutor + $work->pivot->hour;
+					} elseif ($work->name == '一對一陪讀') {
+						$read_tutor = $read_tutor + $work->pivot->hour;
 					}
 				}
 			}
 
 			$result[] = (object)[
-				'姓名'   => $servitor->name,
-				'總時數'  => $total_hour,
-				'一般工讀' => $normal,
-				'數學家教' => $math_tutor,
-				'英文家教' => $eng_tutor
+				'姓名'    => $servitor->name,
+				'總時數'   => $total_hour,
+				'一般工讀'  => $normal,
+				'數學家教'  => $math_tutor,
+				'英文家教'  => $eng_tutor,
+				'一對一陪讀' => $read_tutor
 			];
+
+			$total_hour = 0;
+			$normal = 0;
+			$math_tutor = 0;
+			$eng_tutor = 0;
+			$read_tutor = 0;
 		}
 
 		return $result;
 	}
 
-	/**                   
+	/**
 	 * 用LIKE查詢老師
-	 * 
+	 *
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
 	public function getAllTeacher()
@@ -133,8 +174,8 @@ class UserRepository extends AbstractRepository
 	}
 
 	/*****************************前台管理*******************************
-
-	/**
+	 *
+	 * /**
 	 * 查詢個人大頭貼
 	 *
 	 * @param int $user_id
@@ -231,6 +272,12 @@ class UserRepository extends AbstractRepository
 		return $user;
 	}
 
+	/**
+	 * 查詢使用者最近打卡記錄
+	 *
+	 * @param int $user_id
+	 * @return mixed
+	 */
 	public function getUserLatestClock(int $user_id)
 	{
 		$user = $this->model->find($user_id);
@@ -238,6 +285,12 @@ class UserRepository extends AbstractRepository
 		return $user->clockins()->latest('on_duty')->first();
 	}
 
+	/**
+	 * 查詢使用者最近全部的打卡記錄
+	 *
+	 * @param int $user_id
+	 * @return mixed
+	 */
 	public function getUserAllClockCardLatest(int $user_id)
 	{
 		$user = $this->model->find($user_id);
@@ -245,6 +298,12 @@ class UserRepository extends AbstractRepository
 		return $user->clockins()->latest()->paginate(5);
 	}
 
+	/**
+	 * 查詢使用者可選擇月份
+	 *
+	 * @param int $user_id
+	 * @return array
+	 */
 	public function getUserSelectMonth(int $user_id)
 	{
 		$user = $this->model->find($user_id);
@@ -266,6 +325,13 @@ class UserRepository extends AbstractRepository
 		return $months;
 	}
 
+	/**
+	 * 查詢月份的使用者打卡記錄
+	 *
+	 * @param array $data
+	 * @param int $user_id
+	 * @return array
+	 */
 	public function getUserClockMonth(array $data, int $user_id)
 	{
 		$user = $this->model->find($user_id);
@@ -274,6 +340,7 @@ class UserRepository extends AbstractRepository
 		$normal = 0;
 		$math_tutor = 0;
 		$eng_tutor = 0;
+		$read_tutor = 0;
 
 		foreach ($cards as $card) {
 			$total_hour = $total_hour + $card->total_hour;
@@ -285,6 +352,8 @@ class UserRepository extends AbstractRepository
 					$math_tutor = $math_tutor + $work->pivot->hour;
 				} elseif ($work->name == '英文家教') {
 					$eng_tutor = $eng_tutor + $work->pivot->hour;
+				} elseif ($work->name == '一對一陪讀') {
+					$read_tutor = $read_tutor + $work->pivot->hour;
 				}
 			}
 		}
@@ -292,7 +361,8 @@ class UserRepository extends AbstractRepository
 			'總時數'  => $total_hour,
 			'一般工讀' => $normal,
 			'數學家教' => $math_tutor,
-			'英文家教' => $eng_tutor
+			'英文家教' => $eng_tutor,
+			'一對一陪讀' => $read_tutor
 		];
 
 		return $month_works;

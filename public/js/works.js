@@ -11,7 +11,7 @@ function manageData() {
         data : {page:current_page},
         dataType : 'json'
     }).done(function (data) {
-        console.log(data);
+        // console.log(data);
         total_page = data.last_page;
 
         $('#pagination').twbsPagination({

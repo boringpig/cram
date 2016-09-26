@@ -48,6 +48,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function(){
 	Route::get('/account/activity-log', ['as' => 'user.activity-log', 'uses' => 'UserController@getUserActivityLog']);
 	Route::post('/account/user-avatar', ['as' => 'user.avatar', 'uses' => 'UserController@postUserAvatar']);
 });
+
 // 上班打卡Routes
 Route::group(['prefix' => 'clock', 'middleware' => ['auth','role:工讀生|系統開發員']], function(){
 	Route::get('/log', ['as' => 'user-clock.log', 'uses' => 'UserController@getClockLog']);
@@ -60,6 +61,7 @@ Route::group(['prefix' => 'clock', 'middleware' => ['auth','role:工讀生|系�
 	Route::post('/work/finish', ['as' => 'clock-out.finish', 'uses' => 'WorkController@postUserWork']);
 	Route::get('/work/content', ['as' => 'work.content', 'uses' => 'WorkController@ajax_showAllWork']);
 });
+
 //班級點名Routes
 Route::group(['prefix' => 'rollCall', 'middleware' => ['auth','role:工讀生|系統開發員']], function(){
 	Route::get('/', ['as' => 'rollCall.index', 'uses' => 'RollCallController@getRollCallIndex']);

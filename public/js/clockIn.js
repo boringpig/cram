@@ -11,6 +11,7 @@ var card_id; //打卡完後的卡的ＩＤ
 
 check_status();
 
+//確認目前打卡狀態
 function check_status() {
     $.ajax({
         type: 'get',
@@ -21,6 +22,7 @@ function check_status() {
     });
 }
 
+//
 function get_work() {
     $.ajax({
         type: 'get',
@@ -48,6 +50,7 @@ function isEmptyObject(obj)
     return true;
 }
 
+//顯示上/下班按鈕
 function manageButton(data) {
     var rows = '';
     if (! isEmptyObject(data)){
@@ -65,6 +68,7 @@ function manageButton(data) {
     return $(".clock_card").html(rows);
 }
 
+//顯示打卡下班的工作表
 function showClockOutCard(data) {
     var rows = '';
     total_hour = data.total_hour;
@@ -83,6 +87,7 @@ function showClockOutCard(data) {
     return $(".clock_card").html(rows);
 }
 
+//顯示工讀生可選擇的工作內容
 function manageWork(data) {
     num = num + 1;
     var rows = '';
@@ -119,6 +124,7 @@ $("body").on("click", ".add-work", function () {
     });
 });
 
+//打卡上班
 $("body").on("click", ".clock_in", function () {
     $.ajax({
         type: 'post',
@@ -134,6 +140,7 @@ $("body").on("click", ".clock_in", function () {
     });
 });
 
+//打卡下班
 $("body").on("click", ".clock_out", function () {
     card_id = $(this).data('id');
 
@@ -149,9 +156,10 @@ $("body").on("click", ".clock_out", function () {
     });
 });
 
+//送出工作表的表單
 $("body").on("click", ".clock-work", function () {
     var work = makeWorkArray();
-    console.log(work);
+    //console.log(work);
     var check = checkWorkHr(work, total_hour);
     if(check){
         $.ajax({
@@ -160,7 +168,7 @@ $("body").on("click", ".clock-work", function () {
             data: {card_id: card_id, work: work},
             dataType: 'json'
         }).done(function (data) {
-            console.log(data);
+            //console.log(data);
             swal({
                 title: "打卡下班成功",
                 type: "success"
@@ -176,11 +184,13 @@ $("body").on("click", ".clock-work", function () {
     }
 });
 
+//移除某行的工作內容與時數
 $("body").on("click", ".remove-work", function () {
     var rows = $(this).parent("div").parent("div");
     rows.remove();
 });
 
+//將每行的工作內容與時數轉換成Object並存成Array
 function makeWorkArray() {
     var work_location = $(".clock-work").parent("div").prev("div").prev("div").find(".clock_card_work").find(".work_row");
     var work_array = [];
@@ -198,6 +208,7 @@ function makeWorkArray() {
     return work_array;
 }
 
+//確認工作時數與總時數是否相符
 function checkWorkHr(data, total_hour) {
     var hours = 0;
 

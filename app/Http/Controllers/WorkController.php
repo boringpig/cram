@@ -26,6 +26,11 @@ class WorkController extends Controller
 		$this->work = $work;
 	}
 
+	/**
+	 * AJAX顯示全部的工作
+	 *
+	 * @return mixed
+	 */
 	public function ajax_showAllWork()
 	{
 		$works = $this->work->showAllWork();
@@ -33,6 +38,13 @@ class WorkController extends Controller
 		return response()->json($works);
 	}
 
+
+	/**
+	 * 打卡下班的工作
+	 *
+	 * @param Request $request
+	 * @return mixed
+	 */
 	public function postUserWork(Request $request)
 	{
 		$this->work->addUserClockOutWork($request->all());

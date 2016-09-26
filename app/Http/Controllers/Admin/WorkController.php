@@ -29,6 +29,11 @@ class WorkController extends AdminController
         $this->middleware('permission:系統管理|人事管理');
     }
 
+	/**
+     * AJAX CRUD 工作
+     *
+     * @return mixed
+     */
     public function manageWork()
     {
         return view('admin.work.manageWork');

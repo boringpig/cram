@@ -122,11 +122,21 @@ class UserController extends Controller
 
 	/*****************************上班打卡*********************************/
 
+	/**
+	 * 顯示上班打卡
+	 *
+	 * @return mixed
+	 */
 	public function getClockIndex()
 	{
 		return view('clockin.index');
 	}
 
+	/**
+	 * 顯示個人打卡記錄
+	 *
+	 * @return mixed
+	 */
 	public function getClockLog()
 	{
 		$cards = $this->user->showUserAllClockCardByLatest();
@@ -134,6 +144,11 @@ class UserController extends Controller
 		return view('clockin.log', compact('cards'));
 	}
 
+	/**
+	 * 顯示查詢打卡月份
+	 *
+	 * @return mixed
+	 */
 	public function getClockView()
 	{
 		$months = $this->user->showUserSelectMonth();
@@ -141,6 +156,12 @@ class UserController extends Controller
 		return view('clockin.view-month', compact('months'));
 	}
 
+	/**
+	 * AJAX查詢打卡月份
+	 *
+	 * @param Request $request
+	 * @return mixed
+	 */
 	public function ajax_postClockMonth(Request $request)
 	{
 		$card_month = $this->user->showUserClockMonth($request->all());
@@ -148,6 +169,11 @@ class UserController extends Controller
 		return response()->json($card_month);
 	}
 
+	/**
+	 * AJAX查詢使用者的打卡狀況
+	 *
+	 * @return mixed
+	 */
 	public function getClockStatus()
 	{
 		$status = $this->user->showUserLatestClock();
@@ -155,6 +181,11 @@ class UserController extends Controller
 		return response()->json($status);
 	}
 
+	/**
+	 * 上班打卡
+	 *
+	 * @return mixed
+	 */
 	public function postUserClockIn()
 	{
 		$work = $this->user->postUserClockIn();
@@ -162,6 +193,12 @@ class UserController extends Controller
 		return response()->json($work);
 	}
 
+	/**
+	 * 下班打卡
+	 *
+	 * @param Request $request
+	 * @return mixed
+	 */
 	public function postUserClockOut(Request $request)
 	{
 		$work = $this->user->postUserClockOut($request->all());
