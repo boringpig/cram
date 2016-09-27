@@ -23,6 +23,12 @@ class StudentRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 建立學生
+	 *
+	 * @param array $data
+	 * @return Student
+	 */
 	public function createStudent(array $data)
 	{
 		$student = new Student();
@@ -40,6 +46,13 @@ class StudentRepository extends AbstractRepository
 		return $student;
 	}
 
+	/**
+	 * 更新學生
+	 *
+	 * @param array $data
+	 * @param int $id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function updateStudent(array $data, int $id)
 	{
 		$student = $this->model->find($id);
@@ -57,6 +70,13 @@ class StudentRepository extends AbstractRepository
 		return $student;
 	}
 
+	/**
+	 * 刪除學生
+	 *
+	 * @param int $id
+	 * @return bool|null
+	 * @throws \Exception
+	 */
 	public function deleteStudent(int $id)
 	{
 		$student = $this->model->find($id);

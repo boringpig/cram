@@ -23,7 +23,7 @@
                         @foreach($lessons as $lesson)
                             <tr>
                                 <td>{{ $lesson->grade->name }}</td>
-                                <td>{{$lesson->grade->name}} {{ $lesson->name }}</td>
+                                <td>{{ $lesson->name }}</td>
                                 <td>{{ $lesson->user->name }}</td>
                                 <td>{{ count($lesson->students->all()) }} 人</td>
                                 <td>{{ $lesson->present()->dateFormat }}</td>

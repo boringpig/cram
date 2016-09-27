@@ -22,6 +22,13 @@ class AddressRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 建立學生地址
+	 *
+	 * @param array $data
+	 * @param int $student_id
+	 * @return Address
+	 */
 	public function createAddress(array $data, int $student_id)
 	{
 		$address = new Address();
@@ -32,6 +39,13 @@ class AddressRepository extends AbstractRepository
 		return $address;
 	}
 
+	/**
+	 * 更新學生地址
+	 *
+	 * @param array $data
+	 * @param int $address_id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function updateAddress(array $data, int $address_id)
 	{
 		$address = $this->model->find($address_id);

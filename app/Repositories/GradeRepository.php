@@ -22,6 +22,11 @@ class GradeRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 查詢全部的年級
+	 *
+	 * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+	 */
 	public function getLatestAllGrade()
 	{
 		return $this->model->latest()->paginate(8);

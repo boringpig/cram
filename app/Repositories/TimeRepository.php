@@ -23,11 +23,22 @@ class TimeRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 查詢全部的課程時間
+	 *
+	 * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+	 */
 	public function getLatestAllTime()
 	{
 		return $this->model->latest()->paginate(8);
 	}
 
+	/**
+	 * 建立課程時間
+	 *
+	 * @param array $data
+	 * @return Time
+	 */
 	public function createTime(array $data)
 	{
 		$time = new Time();
@@ -39,6 +50,13 @@ class TimeRepository extends AbstractRepository
 		return $time;
 	}
 
+	/**
+	 * 更新課程時間
+	 *
+	 * @param array $data
+	 * @param int $id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function updateTime(array $data, int $id)
 	{
 		$time = $this->model->find($id);

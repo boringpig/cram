@@ -29,6 +29,11 @@ class GradeController extends AdminController
     }
 
 
+	/**
+     * 處理AJAX的年級頁面
+     *
+     * @return mixed
+     */
     public function manageGrade()
     {
         return view('admin.lesson.grade.manageGrade');

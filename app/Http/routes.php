@@ -16,6 +16,11 @@ Route::get('/', ['as' => 'home', 'uses' => 'PageController@getHomePage']);
 Route::get('api/calendar', ['uses' => 'CalendarEventController@ajax_showAllEvent']);
 Route::resource('article', 'ArticleController');
 
+//各班級介紹
+Route::get('lesson/elementary', ['as' => 'lesson.elementary', 'uses' => 'LessonController@getElementaryPage']);
+Route::get('lesson/junior', ['as' => 'lesson.junior', 'uses' => 'LessonController@getJuniorPage']);
+Route::get('lesson/senior', ['as' => 'lesson.senior', 'uses' => 'LessonController@getSeniorPage']);
+
 //聯絡我們Routes
 Route::get('contact', ['as' => 'contact.index', 'uses' => 'MessageController@getContactPage']);
 Route::post('contact-send', ['as' => 'contact.send', 'uses' => 'MessageController@postContactPage']);

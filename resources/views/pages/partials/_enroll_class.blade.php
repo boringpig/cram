@@ -9,7 +9,7 @@
             <div class="panel-body">
                 <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
                 <br>
-                <a href="#" class="btn btn-default pull-right">看更多</a>
+                <a href="{{ route('lesson.elementary') }}" class="btn btn-default pull-right">看更多</a>
             </div>
         </div>
     </div>
@@ -21,19 +21,19 @@
             <div class="panel-body">
                 <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
                 <br>
-                <a href="#" class="btn btn-default pull-right">看更多</a>
+                <a href="{{ route('lesson.junior') }}" class="btn btn-default pull-right">看更多</a>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4><i class="fa fa-fw fa-users"></i> 高中班</h4>
+                <h4><i class="fa fa-fw fa-users"></i> 高中職班</h4>
             </div>
             <div class="panel-body">
                 <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
                 <br>
-                <a href="#" class="btn btn-default pull-right">看更多</a>
+                <a href="{{ route('lesson.senior') }}" class="btn btn-default pull-right">看更多</a>
             </div>
         </div>
     </div>

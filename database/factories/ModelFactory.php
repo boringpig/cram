@@ -19,3 +19,25 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Models\Student::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'graduated_school' => '斗六國小',
+        'parent_name' => $faker->name,
+        'status' => 1
+    ];
+});
+
+$factory->define(App\Models\Phone::class, function (Faker\Generator $faker) {
+    return [
+        'student_phone' => $faker->phoneNumber,
+        'parent_phone' => $faker->phoneNumber,
+    ];
+});
+
+$factory->define(App\Models\Address::class, function (Faker\Generator $faker) {
+    return [
+        'home_address' => $faker->address,
+    ];
+});

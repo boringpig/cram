@@ -23,6 +23,56 @@ class LessonRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 查詢所有國小的班級
+	 *
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function getAllElementaryLesson()
+	{
+		$lessons = $this->model->where('classNo', 'LIKE', 'E%')->with('grade')->whereHas('grade', function($query){
+			$query->where('name', 'LIKE', '國小%');
+		})->get();
+
+		return $lessons;
+	}
+
+	/**
+	 * 查詢所有國中的班級
+	 *
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function getAllJuniorLesson()
+	{
+		$lessons = $this->model->where('classNo', 'LIKE', 'J%')->with('grade')->whereHas('grade', function($query){
+			$query->where('name', 'LIKE', '國中%');
+		})->get();
+
+		return $lessons;
+	}
+
+	/**
+	 * 查詢所有高中職的班級
+	 *
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function getAllSeniorLesson()
+	{
+		$lessons = $this->model->where('classNo', 'LIKE', 'S%')->orWhere('classNo', 'LIKE', 'SB%')
+			->with('grade')->whereHas('grade', function($query){
+				$query->where('name', 'LIKE', '高中%')
+					  ->orWhere('name', 'LIKE', '高職%');
+		})->get();
+
+		return $lessons;
+	}
+
+	/**
+	 * 新增班級
+	 *
+	 * @param array $data
+	 * @return Lesson
+	 */
 	public function createLesson(array $data)
 	{
 		$lesson = new Lesson();
@@ -43,6 +93,13 @@ class LessonRepository extends AbstractRepository
 		return $lesson;
 	}
 
+	/**
+	 * 更新班級
+	 *
+	 * @param array $data
+	 * @param int $id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function updateLesson(array $data, int $id)
 	{
 		$lesson = $this->model->find($id);
@@ -63,6 +120,13 @@ class LessonRepository extends AbstractRepository
 		return $lesson;
 	}
 
+	/**
+	 * 刪除班級
+	 *
+	 * @param int $id
+	 * @return bool|null
+	 * @throws \Exception
+	 */
 	public function deleteLesson(int $id)
 	{
 		$lesson = $this->model->find($id);

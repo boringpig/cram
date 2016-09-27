@@ -28,6 +28,11 @@ class TimeController extends AdminController
         $this->middleware('permission:系統管理|班級事務');
     }
 
+	/**
+     * 處理AJAX的時間頁面
+     *
+     * @return mixed
+     */
     public function manageTime()
     {
         return view('admin.lesson.time.manageTime');

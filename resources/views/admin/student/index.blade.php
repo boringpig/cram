@@ -41,6 +41,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="text-center">
+                {!! $students->links() !!}
+            </div>
         </div>
     </div>
 @endsection

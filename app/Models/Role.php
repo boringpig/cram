@@ -3,6 +3,7 @@
 
 namespace App\Models;
 
+use Laracasts\Presenter\PresentableTrait;
 use Zizaco\Entrust\EntrustRole;
 
 /**
@@ -27,6 +28,10 @@ use Zizaco\Entrust\EntrustRole;
  */
 class Role extends EntrustRole
 {
+	use PresentableTrait;
+
+	protected $presenter = 'App\Presenters\RolePresenter';
+
 	protected $fillable = ['name', 'display_name', 'description'];
 
 	public function users()

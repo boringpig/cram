@@ -166,7 +166,7 @@ class UserRepository extends AbstractRepository
 	 */
 	public function getAllTeacher()
 	{
-		$teachers = $this->model->with('roles')->whereHas('roles', function ($role_query) {
+		$teachers = $this->model->where('status', true)->with('roles')->whereHas('roles', function ($role_query) {
 			$role_query->where('name', 'LIKE', '%老師');
 		})->get();
 

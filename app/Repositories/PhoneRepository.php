@@ -22,6 +22,13 @@ class PhoneRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 建立學生電話
+	 *
+	 * @param array $data
+	 * @param int $student_id
+	 * @return Phone
+	 */
 	public function createPhone(array $data, int $student_id)
 	{
 		$phone = new Phone();
@@ -33,6 +40,13 @@ class PhoneRepository extends AbstractRepository
 		return $phone;
 	}
 
+	/**
+	 * 更新學生電話
+	 *
+	 * @param array $data
+	 * @param int $phone_id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function updatePhone(array $data, int $phone_id)
 	{
 		$phone = $this->model->find($phone_id);
