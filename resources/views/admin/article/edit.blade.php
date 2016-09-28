@@ -24,6 +24,7 @@
             {!! Form::close() !!}
         </div>
     </div>
+    <br><br>
 @endsection
 
 @section('scripts')

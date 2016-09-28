@@ -31,6 +31,11 @@ class TagController extends AdminController
         $this->middleware('permission:系統管理|班級公告');
     }
 
+	/**
+     * AJAX CRUD 文章標籤
+     *
+     * @return mixed
+     */
     public function manageTag()
     {
         return view('admin.tag.manageTag');

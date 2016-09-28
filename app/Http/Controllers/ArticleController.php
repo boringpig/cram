@@ -25,29 +25,30 @@ class ArticleController extends Controller
         $this->article = $article;
     }
 
-    /**
-     * Display a listing of the resource.
+	/**
+     * 顯示文章首頁
      *
-     * @return \Illuminate\Http\Response
+     * @return mixed
      */
-    public function index()
+    public function getArticlePage()
     {
         $articles = $this->article->showAllArticle();
 
         return view('article.index', compact('articles'));
     }
 
-    /**
-     * Display the specified resource.
+	/**
+     * 顯示特定的文章
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param string $slug
+     * @return mixed
      */
-    public function show($id)
+    public function getArticleBySlug(string $slug)
     {
-        $article = $this->article->showArticleById($id);
+        $article = $this->article->showArticleBySlug($slug);
 
         return view('article.show', compact('article'));
     }
+
 
 }

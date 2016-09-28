@@ -22,6 +22,26 @@ class ArticleRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 查詢特定的文章
+	 *
+	 * @param string $slug
+	 * @return \Illuminate\Database\Eloquent\Model|null|static
+	 */
+	public function getArticleBySlug(string $slug)
+	{
+		$article = $this->model->where('slug', $slug)->first();
+
+		return $article;
+	}
+
+	/**
+	 * 新增文章
+	 *
+	 * @param array $data
+	 * @param int $user_id
+	 * @return Article
+	 */
 	public function createArticle(array $data, int $user_id)
 	{
 		//儲存文章的圖片
@@ -48,6 +68,13 @@ class ArticleRepository extends AbstractRepository
 		return $article;
 	}
 
+	/**
+	 * 更新文章
+	 *
+	 * @param array $data
+	 * @param int $id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function updateArticle(array $data, int $id)
 	{
 		$article = $this->model->find($id);
@@ -76,6 +103,13 @@ class ArticleRepository extends AbstractRepository
 		return $article;
 	}
 
+	/**
+	 * 刪除文章
+	 *
+	 * @param int $id
+	 * @return bool|null
+	 * @throws \Exception
+	 */
 	public function deleteArticle(int $id)
 	{
 		$article = $this->model->find($id);

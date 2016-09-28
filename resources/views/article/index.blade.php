@@ -20,7 +20,7 @@
                 <h3>{{ $article->title }}</h3>
                 <h4>類別：<span class="label label-default">{{ $article->category->name }}</span></h4>
                 <p>{{ $article->present()->body_str }}</p>
-                <a class="btn btn-primary" href="{{ route('article.show', $article->id) }}">看更多 <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-primary" href="{{ route('article.show', $article->slug) }}">看更多 <span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
         <hr>

@@ -68,6 +68,7 @@
             </div>
         </div>
     </div>
+    <br><br>
 @endsection
 
 @section('scripts')

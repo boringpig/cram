@@ -13,7 +13,7 @@ class ArticlePresenter extends Presenter
 	public function body_str()
 	{
 		if(strlen(strip_tags($this->body)) > 120){
-			return substr(strip_tags($this->body), 0, 120).'...';
+			return substr(strip_tags($this->body), 0, 100).'...';
 		}else{
 			return strip_tags($this->body);
 		}

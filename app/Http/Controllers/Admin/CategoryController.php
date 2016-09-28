@@ -31,6 +31,11 @@ class CategoryController extends AdminController
         $this->middleware('permission:系統管理|班級公告');
     }
 
+	/**
+     * AJAX CRUD 文章類別
+     *
+     * @return mixed
+     */
     public function manageCategory()
     {
         return view('admin.category.manageCategory');

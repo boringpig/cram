@@ -11,8 +11,8 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th width="10%">類別</th>
-                            <th width="15%">標題</th>
+                            <th width="8%">類別</th>
+                            <th width="17%">標題</th>
                             <th width="40%">內容</th>
                             <th width="15%">公告日期</th>
                             <th width="20%"></th>

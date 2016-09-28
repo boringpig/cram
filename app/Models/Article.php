@@ -28,6 +28,8 @@ use Laracasts\Presenter\PresentableTrait;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereCategoryId($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
+ * @property string $image
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Article whereImage($value)
  */
 class Article extends Model
 {
