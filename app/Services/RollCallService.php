@@ -31,11 +31,22 @@ class RollCallService
 		$this->rollCallRepository = $rollCallRepository;
 	}
 
+	/**
+	 * 顯示當天上課的班級
+	 *
+	 * @return array
+	 */
 	public function showTodayAllRollCallLesson()
 	{
 		return $this->lessonRepository->getTodayAllRollCallLesson();
 	}
 
+	/**
+	 * 顯示選擇的點名班級
+	 *
+	 * @param array $data
+	 * @return array
+	 */
 	public function showRollCallLesson(array $data)
 	{
 		//1.先搜尋當天該班級是否有點名紀錄
@@ -49,6 +60,12 @@ class RollCallService
 		return $this->lessonRepository->getLessonAndStudent($data);
 	}
 
+	/**
+	 * AJAX建立或更新點名表狀況
+	 *
+	 * @param array $data
+	 * @return \App\Models\RollCall|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function ajax_RollCallLesson(array $data)
 	{
 		if ((int)$data['roll_call_id'] != 0){
@@ -58,6 +75,11 @@ class RollCallService
 		return $this->rollCallRepository->createRollCall($data);
 	}
 
+	/**
+	 * 用陣列顯示點名班級
+	 *
+	 * @return array
+	 */
 	public function showRollCallLessonByArray()
 	{
 		$rollCalls = $this->rollCallRepository->all();
@@ -73,21 +95,46 @@ class RollCallService
 		return $lesson_list;
 	}
 
+	/**
+	 * 顯示年/月點名單
+	 *
+	 * @param array $data
+	 * @return array
+	 */
 	public function showRollCallByDate(array $data)
 	{
 		return $this->rollCallRepository->getRollCallByDate($data);
 	}
 
+	/**
+	 * 顯示班級點名單
+	 *
+	 * @param array $data
+	 * @return array
+	 */
 	public function showRollCallByLesson(array $data)
 	{
 		return $this->rollCallRepository->getRollCallByLesson($data);
 	}
 
+	/**
+	 * 顯示特定的點名單
+	 *
+	 * @param int $id
+	 * @return mixed
+	 */
 	public function showRollCallById(int $id)
 	{
 		return $this->rollCallRepository->find($id);
 	}
 
+	/**
+	 * 編輯點名單
+	 *
+	 * @param array $data
+	 * @param int $id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function editRollCallById(array $data, int $id)
 	{
 		return $this->rollCallRepository->updateRollCallById($data, $id);

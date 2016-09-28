@@ -25,6 +25,11 @@ class RollCallController extends Controller
 		$this->rollCall = $rollCall;
 	}
 
+	/**
+	 * 顯示班級點名
+	 *
+	 * @return mixed
+	 */
 	public function getRollCallIndex()
 	{
 		$lessons = $this->rollCall->showTodayAllRollCallLesson();
@@ -32,6 +37,12 @@ class RollCallController extends Controller
 		return view('rollcall.index', compact('lessons'));
 	}
 
+	/**
+	 * AJAX選擇點名的班級
+	 *
+	 * @param Request $request
+	 * @return mixed
+	 */
 	public function ajax_postSearchLesson(Request $request)
 	{
 		$rollCalls = $this->rollCall->showRollCallLesson($request->all());
@@ -39,6 +50,12 @@ class RollCallController extends Controller
 		return response()->json($rollCalls);
 	}
 
+	/**
+	 * AJAX點名班級的學生
+	 *
+	 * @param Request $request
+	 * @return mixed
+	 */
 	public function ajax_postRollCallLesson(Request $request)
 	{
 		$rollCall = $this->rollCall->ajax_RollCallLesson($request->all());

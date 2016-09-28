@@ -23,6 +23,12 @@ class RollCallRepository extends AbstractRepository
 		parent::__construct();
 	}
 
+	/**
+	 * 取得點名單的班級資訊與學生資料
+	 *
+	 * @param RollCall $rollCall
+	 * @return array
+	 */
 	public function getRollCallData(RollCall $rollCall)
 	{
 		$weekArray = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
@@ -70,6 +76,12 @@ class RollCallRepository extends AbstractRepository
 		return $result;
 	}
 
+	/**
+	 * 建立點名表
+	 *
+	 * @param array $data
+	 * @return RollCall
+	 */
 	public function createRollCall(array $data)
 	{
 		$rollCall = new RollCall();
@@ -88,6 +100,12 @@ class RollCallRepository extends AbstractRepository
 		return $rollCall;
 	}
 
+	/**
+	 * 更新點名表
+	 *
+	 * @param array $data
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function updateRollCall(array $data)
 	{
 		$rollCall = $this->model->find($data['roll_call_id']);
@@ -101,7 +119,15 @@ class RollCallRepository extends AbstractRepository
 
 		return $rollCall;
 	}
+
 	/***** 後台管理 *****/
+
+	/**
+	 * 查詢年/月點名單
+	 *
+	 * @param array $data
+	 * @return array
+	 */
 	public function getRollCallByDate(array $data)
 	{
 		$year = substr($data['date'], 0, 4);
@@ -113,7 +139,6 @@ class RollCallRepository extends AbstractRepository
 								 ->get();
 
 		foreach ($rollCalls as $rollCall){
-
 			$should_go = count($rollCall->students()->get());
 			$real_go = count($rollCall->students()->wherePivot('status', 1)->get());
 			$yet_go = $should_go - $real_go;
@@ -130,6 +155,12 @@ class RollCallRepository extends AbstractRepository
 		return $rollcall_array;
 	}
 
+	/**
+	 * 查詢班級的點名單
+	 *
+	 * @param array $data
+	 * @return array
+	 */
 	public function getRollCallByLesson(array $data)
 	{
 		$rollCalls = $this->model->where('lesson_id', $data['lesson'])->get();
@@ -152,6 +183,13 @@ class RollCallRepository extends AbstractRepository
 		return $rollcall_array;
 	}
 
+	/**
+	 * 更新點名單
+	 *
+	 * @param array $data
+	 * @param int $id
+	 * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+	 */
 	public function updateRollCallById(array $data, int $id)
 	{
 		$rollCall = $this->model->find($id);

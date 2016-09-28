@@ -135,6 +135,12 @@ class LessonRepository extends AbstractRepository
 	}
 
 	/***** 點名管理 *****/
+
+	/**
+	 * 查詢當天上課的班級
+	 *
+	 * @return array
+	 */
 	public function getTodayAllRollCallLesson()
 	{
 		$weekArray = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
@@ -154,6 +160,12 @@ class LessonRepository extends AbstractRepository
 		return $lesson_list;
 	}
 
+	/**
+	 * 確認當天班級是否有點名紀錄
+	 *
+	 * @param array $data
+	 * @return mixed
+	 */
 	public function checkTodayRollCallLesson(array $data)
 	{
 		$lesson = $this->model->find($data['lesson']);
@@ -162,6 +174,12 @@ class LessonRepository extends AbstractRepository
 		return $rollCall;
 	}
 
+	/**
+	 * 用陣列存取班級資訊和學生資料
+	 *
+	 * @param array $data
+	 * @return array
+	 */
 	public function getLessonAndStudent(array $data)
 	{
 		$weekArray = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
@@ -195,7 +213,7 @@ class LessonRepository extends AbstractRepository
 								   'date' => $date,
 								   'people' => count($lesson->students->all())];
 
-		$result[] = (object)['班級' => $lesson_data,'學生' => $student_data];
+		$result[] = (object)['班級' => $lesson_data, '學生' => $student_data];
 		return $result;
 	}
 

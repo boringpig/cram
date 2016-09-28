@@ -7,6 +7,7 @@ var lesson_array = []; //班級資訊
 var roll_call_id; //如有今天出現兩次點名單，暫存ＩＤ
 var status_array = []; //存每個使用者的status
 
+//搜尋當天點名的班級
 $("#search-lesson-form").submit(function (e) {
     e.preventDefault();
     var form_action = $("#search-lesson-form").attr("action");
@@ -18,7 +19,7 @@ $("#search-lesson-form").submit(function (e) {
         data: {lesson: form_lesson},
         dataType: 'json'
     }).done(function (data) {
-        console.log(data);
+        //console.log(data);
         manageRollCallForm(data);
         ajax_select();
         makeLessonArray(data);
@@ -28,6 +29,7 @@ $("#search-lesson-form").submit(function (e) {
     });
 });
 
+//顯示點名表的班級資訊和學生資料
 function manageRollCallForm(data) {
     var rows = '';
     var num = 0;
@@ -61,6 +63,7 @@ function manageRollCallForm(data) {
     return $(".rollColl").html(rows);
 }
 
+//ajax選擇點名表上的學生點名狀況
 function ajax_select() {
     var student_location = $(".submit-rollCall").parent("div").parent("div").find(".student-row");
     $(student_location).each(function (index,item) {
@@ -69,6 +72,7 @@ function ajax_select() {
 
 }
 
+//用陣列儲存班級資訊
 function makeLessonArray(data) {
     var lesson_obj = {};
     $.each(data, function (key, value) {
@@ -86,6 +90,7 @@ function makeLessonArray(data) {
     return lesson_array;
 }
 
+//送出點名表單
 $("body").on("click", ".submit-rollCall", function () {
     var student_location = $(".submit-rollCall").parent("div").parent("div").find(".student-row");
     var student_array = []; //學生資訊
@@ -103,13 +108,14 @@ $("body").on("click", ".submit-rollCall", function () {
         data: {roll_call_id: roll_call_id, lesson: lesson_array, student: student_array},
         dataType: 'json'
     }).done(function (data) {
-        console.log(data);
+        //console.log(data);
         swal({
             title: "點名成功!",
             type: "success"
         }, function () {
             window.location.reload();
             lesson_array = []; //清空班級資訊
+            status_array = []; //清空班級學生的點名狀況
         });
     });
 });

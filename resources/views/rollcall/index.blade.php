@@ -4,6 +4,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('src/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('src/css/sweetalert.css') }}">
     <style>
         .card {
             padding: 10px;
@@ -42,10 +43,12 @@
             <div class="rollColl"></div>
         </div>
     </div>
+    <br><br>
 @endsection
 
 @section('scripts')
     <script src="{{ asset('src/js/select2.min.js') }}"></script>
+    <script src="{{ asset('src/js/sweetalert.min.js') }}"></script>
     <script type="text/javascript">
         var url = "{{ route('rollCall.index') }}";
         $('.select-lesson').select2({

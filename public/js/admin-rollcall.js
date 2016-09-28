@@ -4,6 +4,7 @@ $.ajaxSetup({
     }
 });
 
+//搜尋年/月表單
 $("#search-date-form").submit(function (e) {
     e.preventDefault();
     var form_action = $("#search-date-form").attr("action");
@@ -15,11 +16,12 @@ $("#search-date-form").submit(function (e) {
         data: {date: form_date},
         dataType: 'json'
     }).done(function (data) {
-        console.log(data);
+        //console.log(data);
         manageRollCall(data);
     });
 });
 
+//搜尋班級的表單
 $("#search-lesson-form").submit(function (e) {
     e.preventDefault();
     var form_action = $("#search-lesson-form").attr("action");
@@ -31,11 +33,12 @@ $("#search-lesson-form").submit(function (e) {
         data: {lesson: form_lesson},
         dataType: 'json'
     }).done(function (data) {
-        console.log(data);
+        //console.log(data);
         manageRollCall(data);
     });
 });
 
+//顯示點名表資料
 function manageRollCall(data) {
     var rows = '';
 

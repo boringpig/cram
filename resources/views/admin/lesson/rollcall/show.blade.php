@@ -51,11 +51,15 @@
                     <div class="col-sm-12">
                         <div class="text-center">
                             {{ Form::submit('修改', ['class' => 'btn btn-primary btn-lg']) }}
-                            <a href="{{ route('rollCall-date.view') }}" class="btn btn-default btn-lg" style="margin-left: 20px">返回</a>
+                            <a href="{{ route('rollCall-lesson.view') }}" class="btn btn-default btn-lg" style="margin-left: 20px">返回</a>
                         </div>
                     </div>
                 </div>
             {!! Form::close() !!}
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    @include('sweet::alert')
 @endsection
