@@ -5,11 +5,13 @@
 ## 主要功能
    - 上下班打卡
    - 班級點名
+
 ## 開發語言
    - Laravel 5.2
    - MySQL
    - jQuery、Ajax
    - Bootstrap 3
+
 ## 套件使用
    - [laravel/socialite](https://github.com/laravel/socialite)(Social Authentication)
    - [spatie/laravel-activitylog](https://github.com/spatie/laravel-activitylog)(紀錄使用者的操作)
@@ -20,10 +22,12 @@
    - [uxweb/sweet-alert](https://github.com/uxweb/sweet-alert)(SweetAlert使用)
    - [mews/purifier](https://github.com/mewebstudio/Purifier)(過濾使用者的惡意語法)
    - [proengsoft/laravel-jsvalidation](https://github.com/proengsoft/laravel-jsvalidation)(整合 laravel validation 進行 ajax 處理)
+
 ## 外部API使用
    - Google Maps API
    - Facebook API
    - Amazon S3
+
 ## 資料夾結構
 ```
 cram/
@@ -59,6 +63,7 @@ cram/
     .
     .
 ```
+
 ## 系統介紹
 - <p style="font:14pt"> 帳戶登入 </p>
 
