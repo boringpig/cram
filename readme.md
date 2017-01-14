@@ -78,15 +78,19 @@ cram/
 
 ![](https://i.imgur.com/N46aMhc.png)
 
+![](https://i.imgur.com/Gx7rVGn.png)
+
 - <p style="font:14pt"> 班級點名 </p>
 ![](https://i.imgur.com/oduUVYP.png)
+
+![](https://i.imgur.com/7Snkr9o.png)
 
 ![](https://i.imgur.com/R8ywgAn.png)
 
 - <p style="font:14pt"> 聯絡我們 </p>
-![](https://i.imgur.com/q7gEeHI.png)
-
 ![](https://i.imgur.com/iSbZYek.png)
+
+![](https://i.imgur.com/q7gEeHI.png)
 
 - <p style="font:14pt"> 權限管理 </p>
 ![](https://i.imgur.com/QK7NeDO.png)
@@ -94,3 +98,5 @@ cram/
 ![](https://i.imgur.com/TP2jDRf.png)
 
 ![](https://i.imgur.com/3XNgOyj.png)
+
+![](https://i.imgur.com/hQVtc8w.png)
